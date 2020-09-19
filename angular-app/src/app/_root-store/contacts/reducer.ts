@@ -1,31 +1,31 @@
-import * as ProductActions from './actions';
-import { ProductState, InitialState } from './state';
+import * as ContactsActions from './actions';
+import { ContactsState, InitialState } from './state';
 
-export function ProductReducer(state: ProductState = InitialState, action: ProductActions.ProductActions): ProductState {
+export function ContactsReducer(state: ContactsState = InitialState, action: ContactsActions.ContactsActions): ContactsState {
     switch (action.type) {
-        case ProductActions.ProductType.LOAD_PRODUCT: {
+        case ContactsActions.ContactsType.LOAD_CONTACTS: {
             return {
                 ...state,
                 loading: true,
                 error: null
             };
         }
-        case ProductActions.ProductType.LOAD_PRODUCT_SUCCESS: {
-                console.log("LOAD_PRODUCT_SUCCESS", action.payload)
+        case ContactsActions.ContactsType.LOAD_CONTACTS_SUCCESS: {
+            console.log("contacts", action.payload);
             return {
                 ...state,
                 loading: false,
                 items: action.payload
             };
         }
-        case ProductActions.ProductType.LOAD_PRODUCT_FAIL: {
+        case ContactsActions.ContactsType.LOAD_CONTACTS_FAIL: {
             return {
                 ...state,
                 loading: false,
                 error: action.payload.error
             };
         }
-        case ProductActions.ProductType.RESET_STORE: {
+        case ContactsActions.ContactsType.RESET_STORE: {
             return {
                 ...InitialState
             };

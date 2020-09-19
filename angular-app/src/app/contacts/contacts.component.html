@@ -1,0 +1,3 @@
+<ul *ngIf="(allContactsSelector$ | async) as contacts">
+    <li *ngFor="let contact of contacts">{{contact.name}}</li>
+</ul>
