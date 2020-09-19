@@ -38,3 +38,7 @@
     </table>
     <mat-paginator [length]="productsCountSelector$ | async" [pageSize]="paginationSetting.pageSize" (page)="loadProducts($event.pageIndex + 1)" showFirstLastButtons></mat-paginator>
 </div>
+
+<div class="actions-container">
+    <button mat-raised-button color="primary" (click)="openDialog()">Add Product</button>
+</div>

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PaginationModel } from 'src/app/models/pagination.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductStoreActions, ProductStoreSelectors, RootStoreState } from 'src/app/_root-store';
+import { DialogComponent } from '../dialog-component/dialog-component.component';
 
 @Component({
     selector: 'app-products',
@@ -26,7 +28,9 @@ export class ProductsComponent implements OnInit {
         sortDirection: 'asc'
     };
 
-    constructor(private store: Store<RootStoreState.State>) { }
+    constructor(
+        private store: Store<RootStoreState.State>,
+        private dialog: MatDialog) { }
 
     public onOptionsSelected(event): void {
         this.displayedColumns = event.value;
@@ -43,6 +47,18 @@ export class ProductsComponent implements OnInit {
         this.paginationSetting.sortDirection = sort.direction;
 
         this.loadProducts(this.paginationSetting.page);
+    }
+
+    openDialog() {
+        const dialogRef = this.dialog.open(DialogComponent,{
+            data:{
+              message: 'Add new product',
+              buttonText: {
+                ok: 'Save',
+                cancel: 'No'
+              }
+            }
+        });
     }
 
     ngOnInit(): void {
