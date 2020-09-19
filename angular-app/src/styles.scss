@@ -38,10 +38,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     } 
 }
   
-
 .actions-container {
     display: flex;
-    padding: 20px;
+    padding: 20px 0;
     justify-content: flex-end;
+    width: 100%;
+}
+
+.main {
+    padding: 20px 0;
+}
+
+.columns-selector {
     width: 100%;
 }

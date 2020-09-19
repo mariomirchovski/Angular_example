@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RootStoreModule } from './_root-store';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         BrowserAnimationsModule,
         MatButtonModule,
         MatDialogModule,
+        MatToolbarModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [],
