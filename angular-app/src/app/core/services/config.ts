@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ContactsModel } from 'src/app/models/contacts.model';
 import { ProductModel } from 'src/app/models/product.model';
 
 const API = 'https://api.billysbilling.com/v2';
@@ -11,6 +12,7 @@ const headerOptions = new HttpHeaders({
 export interface ResponseData {
     meta: any;
     products?: ProductModel[];
+    contacts?: ContactsModel[];
 }
 
 interface Request {

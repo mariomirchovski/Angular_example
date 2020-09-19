@@ -11,7 +11,7 @@ export enum ContactsType {
 export class LoadContacts implements Action {
     readonly type = ContactsType.LOAD_CONTACTS;
 
-    constructor() { }
+    constructor(public payload: any) { }
 }
 
 export class LoadContactsSuccess implements Action {

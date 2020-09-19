@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { PaginationModel } from 'src/app/models/pagination.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductStoreActions, ProductStoreSelectors, RootStoreState } from 'src/app/_root-store';
 
@@ -17,27 +18,27 @@ export class ProductsComponent implements OnInit {
 
     constructor(private store: Store<RootStoreState.State>) { }
     public displayedColumns = ['id', 'name', 'description'];
-    public currentPage = 1;
-    public pageSize = 10;
-    public sortProperty = 'name';
-    public sortDirection = 'asc';
+    public paginationSetting: PaginationModel = {
+        page: 1,
+        pageSize: 10,
+        sortProperty: 'name',
+        sortDirection: 'asc'
+    };
 
-    public loadProducts(page) {
-        this.currentPage = page;
+    public loadProducts(page): void {
+        this.paginationSetting.page = page;
 
-        this.store.dispatch(new ProductStoreActions.LoadProduct({
-            page: page, pageSize: this.pageSize, sortProperty: this.sortProperty, sortDirection: this.sortDirection
-        }));
+        this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
     }
 
-    public sortProducts(sort: MatSort) {
-        this.sortProperty = sort.active;
-        this.sortDirection = sort.direction;
+    public sortProducts(sort: MatSort): void {
+        this.paginationSetting.sortProperty = sort.active;
+        this.paginationSetting.sortDirection = sort.direction;
 
-        this.loadProducts(this.currentPage);
+        this.loadProducts(this.paginationSetting.page);
     }
 
     ngOnInit(): void {
-        this.loadProducts(this.currentPage);
+        this.loadProducts(this.paginationSetting.page);
     }
 }

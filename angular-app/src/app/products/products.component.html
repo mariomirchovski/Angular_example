@@ -1,25 +1,61 @@
-
 <div class="mat-elevation-z8">
-    <table mat-table *ngIf="(allProductsSelector$) as products" [dataSource]="products" 
-        matSort class="mat-elevation-z8" (matSortChange) = "sortProducts($event)" >
+    <table
+        mat-table
+        *ngIf="(allProductsSelector$) as products"
+        [dataSource]="products"
+        matSort
+        class="mat-elevation-z8"
+        (matSortChange)="sortProducts($event)"
+    >
         <!-- Name Column -->
         <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+            > Id </th>
+            <td
+                mat-cell
+                *matCellDef="let element"
+            > {{element.id}} </td>
         </ng-container>
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+            > Name </th>
+            <td
+                mat-cell
+                *matCellDef="let element"
+            > {{element.name}} </td>
         </ng-container>
         <!-- Desc Column -->
         <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+            > Description </th>
+            <td
+                mat-cell
+                *matCellDef="let element"
+            > {{element.description}} </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns"
+        ></tr>
+        <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns;"
+        ></tr>
     </table>
-    <mat-paginator [length]="productsCountSelector$ | async" [pageSize]="pageSize" (page)="loadProducts($event.pageIndex + 1)" showFirstLastButtons></mat-paginator>
+    <mat-paginator
+        [length]="productsCountSelector$ | async"
+        [pageSize]="paginationSetting.pageSize"
+        (page)="loadProducts($event.pageIndex + 1)"
+        showFirstLastButtons
+    ></mat-paginator>
 </div>

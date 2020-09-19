@@ -1,13 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContactsComponent } from './contacts.component';
+import { NgModule } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { ContactsRoutingModule } from './contacts-routing.module';
+import { ContactsComponent } from './contacts.component';
 
 @NgModule({
     declarations: [ContactsComponent],
     imports: [
         CommonModule,
-        ContactsRoutingModule
+        ContactsRoutingModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule
     ]
 })
 

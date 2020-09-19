@@ -1,28 +1,25 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
-import { ContactsService } from './../../core/services/contacts.service';
-import { RootStoreState } from './../index';
-import * as ContactsActions from './actions';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { ResponseData } from 'src/app/core/services/config';
+import { ContactsService } from './../../core/services/contacts.service';
+import * as ContactsActions from './actions';
 
 @Injectable()
 export class ContactsEffects {
     constructor(
         private actions$: Actions,
         private contactsService: ContactsService,
-        private store$: Store<RootStoreState.State>,
     ) { }
 
     @Effect()
     public loadContacts$: Observable<ContactsActions.LoadContactsSuccess | ContactsActions.LoadContactsFail> = this.actions$.pipe(
         ofType(ContactsActions.ContactsType.LOAD_CONTACTS),
-        switchMap(() => {
-            return this.contactsService.getContacts()
+        switchMap((action: any) => {
+            return this.contactsService.getContacts(action.payload)
                 .pipe(
-                    map((AllData) => {
+                    map((AllData: ResponseData) => {
                         return new ContactsActions.LoadContactsSuccess(AllData.contacts);
                     }),
                     catchError(error => {
