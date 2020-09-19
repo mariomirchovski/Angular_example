@@ -5,6 +5,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactsComponent } from './contacts.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [ContactsComponent],
@@ -13,7 +14,8 @@ import { ContactsComponent } from './contacts.component';
         ContactsRoutingModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        MatButtonModule
     ]
 })
 
