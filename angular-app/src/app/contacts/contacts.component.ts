@@ -4,9 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ContactsModel } from 'src/app/models/contacts.model';
-import { PaginationModel } from 'src/app/models/pagination.model';
 import { ContactsStoreActions, ContactsStoreSelectors, RootStoreState } from 'src/app/_root-store';
 import { DialogComponent } from '../dialog-component/dialog-component.component';
+import { PaginationModel } from '../models/pagination.model';
 
 @Component({
     selector: 'app-contacts',
@@ -30,34 +30,40 @@ export class ContactsComponent implements OnInit {
         sortDirection: 'asc'
     };
 
-    public loadContacts(page): void {
-        this.paginationSetting.page = page;
+    public loadContacts(currentPage): void {
+        this.paginationSetting = {
+            ...this.paginationSetting,
+            page: currentPage
+        };
 
         this.store.dispatch(new ContactsStoreActions.LoadContacts(this.paginationSetting));
     }
 
     public sortContacts(sort: MatSort): void {
-        this.paginationSetting.sortProperty = sort.active;
-        this.paginationSetting.sortDirection = sort.direction;
+        this.paginationSetting = {
+            ...this.paginationSetting,
+            sortProperty: sort.active,
+            sortDirection: sort.direction
+        };
 
         this.loadContacts(this.paginationSetting.page);
     }
 
-    openDialog() {
-        const dialogRef = this.dialog.open(DialogComponent,{
-            data:{
-              message: 'Add new contact',
-              modelType: 'contact',
-              buttonText: {
-                ok: 'Add',
-                cancel: 'Close'
-              }
+    openDialog(): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            data: {
+                message: 'Add new contact',
+                modelType: 'contact',
+                buttonText: {
+                    ok: 'Add',
+                    cancel: 'Close'
+                }
             }
         });
 
         dialogRef.afterClosed().subscribe((confirmed: boolean) => {
             console.log('confirmed: ', confirmed);
-        })
+        });
     }
 
     ngOnInit(): void {

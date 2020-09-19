@@ -36,37 +36,43 @@ export class ProductsComponent implements OnInit {
         this.displayedColumns = event.value;
     }
 
-    public loadProducts(page): void {
-        this.paginationSetting.page = page;
+    public loadProducts(currentPage: number): void {
+        this.paginationSetting = {
+            ...this.paginationSetting,
+            page: currentPage
+        };
 
         this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
     }
 
     public sortProducts(sort: MatSort): void {
-        this.paginationSetting.sortProperty = sort.active;
-        this.paginationSetting.sortDirection = sort.direction;
+        this.paginationSetting = {
+            ...this.paginationSetting,
+            sortProperty: sort.active,
+            sortDirection: sort.direction
+        };
 
         this.loadProducts(this.paginationSetting.page);
     }
 
-    openDialog() {
-        const dialogRef = this.dialog.open(DialogComponent,{
-            data:{
-              message: 'Add new product',
-              modelType: 'product',
-              buttonText: {
-                ok: 'Add',
-                cancel: 'Close'
-              }
+    openDialog(): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            data: {
+                message: 'Add new product',
+                modelType: 'product',
+                buttonText: {
+                    ok: 'Add',
+                    cancel: 'Close'
+                }
             }
         });
 
         dialogRef.afterClosed().subscribe((confirmed: boolean) => {
             console.log('confirmed: ', confirmed);
-        })
+        });
     }
 
     ngOnInit(): void {
-        this.loadProducts(this.paginationSetting.page);
+        this.loadProducts(1);
     }
 }
