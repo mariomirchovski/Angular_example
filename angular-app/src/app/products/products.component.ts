@@ -17,9 +17,10 @@ export class ProductsComponent implements OnInit {
   constructor(private store: Store<RootStoreState.State>) { }
   public displayedColumns = ['id', 'name','description']
   public currentPage = 1
+  public pageSize = 10
 
   public loadProducts(page, sortProperty = 'name', sortDirection = '') {
-    this.store.dispatch(new ProductStoreActions.LoadProduct({ page: page, pageSize: 10, sortProperty: sortProperty, sortDirection: sortDirection}))
+    this.store.dispatch(new ProductStoreActions.LoadProduct({ page: page, pageSize: this.pageSize, sortProperty: sortProperty, sortDirection: sortDirection}))
   }
 
   public sortProducts(sort: MatSort) {
