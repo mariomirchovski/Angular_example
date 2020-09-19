@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductService } from './core/services/product.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-app';
+    constructor(private productService: ProductService) {
+        this.productService.getAll().subscribe((res) => {
+            console.log('saddasd', res)
+        })
+    }
 }

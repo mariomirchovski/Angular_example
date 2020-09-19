@@ -19,7 +19,7 @@ export class ProductEffects {
     ) { }
 
     @Effect()
-    public loadProduct$: Observable<ProductActions.LoadProductSuccess | ProductActions.ProductFail> = this.actions$.pipe(
+    public loadProduct$: Observable<ProductActions.LoadProductSuccess | ProductActions.LoadProductFail> = this.actions$.pipe(
         ofType(ProductActions.ProductType.LOAD_PRODUCT),
         map((action: ProductActions.LoadProduct) => {
             return action.payload;
@@ -30,8 +30,8 @@ export class ProductEffects {
                     map((AllData: /*ProguctAllData*/any) => {
                         return new ProductActions.LoadProductSuccess({...AllData});
                     }),
-                    catchError(e => {
-                        return of(new ProductActions.ProductFail());
+                    catchError(error => {
+                        return of(new ProductActions.LoadProductFail({ error: Error }));
                     })
                 );
         })
