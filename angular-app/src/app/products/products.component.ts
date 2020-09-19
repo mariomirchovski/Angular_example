@@ -25,6 +25,10 @@ export class ProductsComponent implements OnInit {
 
     constructor(private store: Store<RootStoreState.State>) { }
 
+    public onOptionsSelected(event) {
+        this.displayedColumns = event.value;
+    }
+
     public loadProducts(page) {
         this.currentPage = page;
 
