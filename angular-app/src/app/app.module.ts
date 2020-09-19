@@ -7,6 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { RootStoreModule } from './_root-store';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { RootStoreModule } from './_root-store';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        MatButtonModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [],

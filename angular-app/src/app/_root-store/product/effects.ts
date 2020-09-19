@@ -7,12 +7,12 @@ import { RootStoreState } from './../index';
 import * as ProductActions from './actions';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
-import { ProductModel } from '../../models/product.model'
+import { ProductModel } from '../../models/product.model';
 import { ResponseData } from 'src/app/core/services/config';
-@Injectable()
-export class ProductEffects {
 
-    // private messageTime = 5000;
+@Injectable()
+
+export class ProductEffects {
     constructor(
         private actions$: Actions,
         private productService: ProductService,
@@ -28,11 +28,10 @@ export class ProductEffects {
                     map((AllData: ResponseData) => {
                         return new ProductActions.LoadProductSuccess(AllData);
                     }),
-                    catchError(error => {
-                        return of(new ProductActions.LoadProductFail({ error: error }));
+                    catchError(err => {
+                        return of(new ProductActions.LoadProductFail({ error: err }));
                     })
                 );
         })
     );
-
 }

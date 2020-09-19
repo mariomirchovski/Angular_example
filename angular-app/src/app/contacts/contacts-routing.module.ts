@@ -4,16 +4,16 @@ import { ContactsComponent } from './contacts.component';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-  { path: '', component: ContactsComponent },
+    { path: '', component: ContactsComponent },
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [],
-  exports: [RouterModule]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [],
+    exports: [RouterModule]
 })
 
-export class ContactsRoutingModule {}
+export class ContactsRoutingModule { }

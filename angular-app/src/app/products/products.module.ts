@@ -8,13 +8,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
-  declarations: [ProductsComponent],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
-  ]
+    declarations: [ProductsComponent],
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule
+    ]
 })
 export class ProductsModule { }

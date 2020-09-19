@@ -23,7 +23,7 @@ export class LoadContactsSuccess implements Action {
 export class LoadContactsFail implements Action {
     readonly type = ContactsType.LOAD_CONTACTS_FAIL;
 
-    constructor(public payload: any ) { }
+    constructor(public payload: any) { }
 }
 
 export class ResetStore implements Action {

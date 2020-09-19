@@ -7,5 +7,6 @@ import { ProductService } from './core/services/product.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    title = 'angular-app';
     constructor(private productService: ProductService) { }
 }

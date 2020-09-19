@@ -1,7 +1,7 @@
-import { ProductModel } from './../../models/product.model'
+import { ProductModel } from './../../models/product.model';
 export interface ProductState {
     items: ProductModel[];
-    meta: any,
+    meta: any;
     loading: boolean;
     error: any;
 }

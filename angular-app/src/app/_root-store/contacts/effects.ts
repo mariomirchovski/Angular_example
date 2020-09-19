@@ -5,13 +5,11 @@ import { Action, Store } from '@ngrx/store';
 import { ContactsService } from './../../core/services/contacts.service';
 import { RootStoreState } from './../index';
 import * as ContactsActions from './actions';
-import { from, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
 
 @Injectable()
 export class ContactsEffects {
-
-    // private messageTime = 5000;
     constructor(
         private actions$: Actions,
         private contactsService: ContactsService,
@@ -33,5 +31,4 @@ export class ContactsEffects {
                 );
         })
     );
-
 }

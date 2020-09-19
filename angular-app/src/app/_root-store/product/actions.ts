@@ -21,7 +21,7 @@ export class LoadProductSuccess implements Action {
 export class LoadProductFail implements Action {
     readonly type = ProductType.LOAD_PRODUCT_FAIL;
 
-    constructor(public payload: any ) { }
+    constructor(public payload: any) { }
 }
 
 export class ResetStore implements Action {

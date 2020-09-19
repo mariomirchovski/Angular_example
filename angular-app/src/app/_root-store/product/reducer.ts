@@ -31,6 +31,6 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
             };
         }
         default:
-        return state;
+            return state;
     }
 }

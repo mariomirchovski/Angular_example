@@ -8,7 +8,7 @@ import { RequestHelper } from './config';
 })
 
 export class ContactsService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     getContacts(): Observable<any> {
         return RequestHelper.get(this.http, '/contacts');
