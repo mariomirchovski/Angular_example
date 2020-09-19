@@ -11,6 +11,11 @@ export class ProductService {
     constructor(private http: HttpClient) {}
 
     getAll(payload): Observable<ResponseData> {
-        return RequestHelper.get(this.http, `/products?page=${payload.page}&&pageSize=${payload.pageSize}&&sortProperty=${payload.sortProperty}&&sortDirection=${payload.sortDirection}`)
+        let sort = '';
+        if(payload.sortProperty) {
+            sort = `&&sortProperty=${payload.sortProperty}&&sortDirection=${payload.sortDirection}`;
+        }
+        
+        return RequestHelper.get(this.http, `/products?page=${payload.page}&&pageSize=${payload.pageSize}${sort}`)
     }
 }
