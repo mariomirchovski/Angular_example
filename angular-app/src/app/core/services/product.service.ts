@@ -10,7 +10,7 @@ import { RequestHelper, ResponseData } from './config'
 export class ProductService {
     constructor(private http: HttpClient) {}
 
-    getAll(): Observable<ResponseData> {
-        return RequestHelper.get(this.http, '/products')
+    getAll(payload): Observable<ResponseData> {
+        return RequestHelper.get(this.http, `/products?page=${payload.page}&&pageSize=${payload.pageSize}&&sortProperty=${payload.sortProperty}&&sortDirection=${payload.sortDirection}`)
     }
 }

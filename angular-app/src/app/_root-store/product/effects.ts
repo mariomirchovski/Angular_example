@@ -22,15 +22,14 @@ export class ProductEffects {
     @Effect()
     public loadProduct$: Observable<ProductActions.LoadProductSuccess | ProductActions.LoadProductFail> = this.actions$.pipe(
         ofType(ProductActions.ProductType.LOAD_PRODUCT),
-        switchMap(() => {
-            console.log("GET ALL PRODUCTS")
-            return this.productService.getAll()
+        switchMap((action: any) => {
+            return this.productService.getAll(action.payload)
                 .pipe(
                     map((AllData: ResponseData) => {
-                        return new ProductActions.LoadProductSuccess(AllData.products);
+                        return new ProductActions.LoadProductSuccess(AllData);
                     }),
                     catchError(error => {
-                        return of(new ProductActions.LoadProductFail({ error: Error }));
+                        return of(new ProductActions.LoadProductFail({ error: error }));
                     })
                 );
         })
