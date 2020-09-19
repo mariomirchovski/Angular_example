@@ -1,64 +1,120 @@
 <div mat-dialog-content>
-	<h3>
-		{{message}}
-	</h3>
+    <h3>
+        {{message}}
+    </h3>
 
-	<div *ngIf="modelType === 'product'" class="form-wrapper">
-		<div class="form-control-wrapper">
-			<mat-form-field appearance="fill">
-				<mat-label>Enter product name</mat-label>
-				<input matInput placeholder="Name" [formControl]="formProduct.name" name="name" required>
-				<mat-error *ngIf="formProduct.name.invalid">{{getErrorMessage('formProduct', 'name')}}</mat-error>
-			</mat-form-field>
-		</div>
-		<div class="form-control-wrapper">
-			<mat-form-field appearance="fill">
-				<mat-label>Enter product description</mat-label>
-				<input matInput placeholder="Description" [formControl]="formProduct.description" name="description" required>
-				<mat-error *ngIf="formProduct.description.invalid">{{getErrorMessage('formProduct', 'description')}}</mat-error>
-			</mat-form-field>
-		</div>
-		<div class="form-control-wrapper">
-			<mat-form-field appearance="fill">
-				<mat-label>Enter product unit price</mat-label>
-				<input matInput placeholder="Unit Price" [formControl]="formProduct.unitPrice" name="unitPrice" type="number" required>
-				<mat-error *ngIf="formProduct.unitPrice.invalid">{{getErrorMessage('formProduct', 'unitPrice')}}</mat-error>
-			</mat-form-field>
-		</div>
-		<div class="form-control-wrapper">
-			<mat-form-field appearance="fill">
-				<mat-label>Enter product currency</mat-label>
-				<mat-select placeholder="Currency" [formControl]="formProduct.currencyId" name="currencyId" required>
-					<mat-option value="BGN">BGN</mat-option>
-					<mat-option value="EUR">EUR</mat-option>
-					<mat-option value="USD">USD</mat-option>
-				</mat-select>
-				<mat-error *ngIf="formProduct.currencyId.invalid">{{getErrorMessage('formProduct', 'currencyId')}}</mat-error>
-			</mat-form-field> 
-		</div> 
-	</div>
-	<div *ngIf="modelType === 'contact'" class="form-wrapper">
-		<div class="form-control-wrapper">
-			<mat-form-field appearance="fill">
-				<mat-label>Enter product name</mat-label>
-				<input matInput placeholder="Name" [formControl]="formContact.name" name="name" required>
-				<mat-error *ngIf="formContact.name.invalid">{{getErrorMessage('formContact', 'name')}}</mat-error>
-			</mat-form-field>
-		</div>
-		<div class="form-control-wrapper">
-			<mat-form-field appearance="fill">
-				<mat-label>Enter product country</mat-label>
-				<mat-select placeholder="Country" [formControl]="formContact.countryId" name="countryId" required>
-					<mat-option value="BGN">BGN</mat-option>
-					<mat-option value="EUR">EUR</mat-option>
-					<mat-option value="USD">USD</mat-option>
-				</mat-select>
-				<mat-error *ngIf="formContact.countryId.invalid">{{getErrorMessage('formContact', 'countryId')}}</mat-error>
-			</mat-form-field> 
-		</div> 
-	</div>
+    <div
+        *ngIf="modelType === 'product'"
+        class="form-wrapper"
+    >
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter product name</mat-label>
+                <input
+                    matInput
+                    placeholder="Name"
+                    [formControl]="formProduct.name"
+                    name="name"
+                    required
+                >
+                <mat-error *ngIf="formProduct.name.invalid">{{getErrorMessage('formProduct', 'name')}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter product description</mat-label>
+                <input
+                    matInput
+                    placeholder="Description"
+                    [formControl]="formProduct.description"
+                    name="description"
+                >
+                <mat-error *ngIf="formProduct.description.invalid">{{getErrorMessage('formProduct', 'description')}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter product unit price</mat-label>
+                <input
+                    matInput
+                    placeholder="Unit Price"
+                    [formControl]="formProduct.unitPrice"
+                    name="unitPrice"
+                    type="number"
+                    required
+                >
+                <mat-error *ngIf="formProduct.unitPrice.invalid">{{getErrorMessage('formProduct', 'unitPrice')}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter product currency</mat-label>
+                <mat-select
+                    placeholder="Currency"
+                    [formControl]="formProduct.currencyId"
+                    name="currencyId"
+                    required
+                >
+                    <mat-option value="BGN">BGN</mat-option>
+                    <mat-option value="EUR">EUR</mat-option>
+                    <mat-option value="USD">USD</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formProduct.currencyId.invalid">{{getErrorMessage('formProduct', 'currencyId')}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div
+        *ngIf="modelType === 'contact'"
+        class="form-wrapper"
+    >
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter product name</mat-label>
+                <input
+                    matInput
+                    placeholder="Name"
+                    [formControl]="formContact.name"
+                    name="name"
+                    required
+                >
+                <mat-error *ngIf="formContact.name.invalid">{{getErrorMessage('formContact', 'name')}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter product country</mat-label>
+                <mat-select
+                    placeholder="Country"
+                    [formControl]="formContact.countryId"
+                    name="countryId"
+                    required
+                >
+                    <mat-option value="BGN">BGN</mat-option>
+                    <mat-option value="EUR">EUR</mat-option>
+                    <mat-option value="USD">USD</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formContact.countryId.invalid">{{getErrorMessage('formContact', 'countryId')}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
 </div>
-<div mat-dialog-actions align="center">
-	<button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
-	<button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+<div
+    mat-dialog-actions
+    align="center"
+>
+    <button
+        mat-raised-button
+        mat-dialog-close
+        tabindex="-1"
+    >{{cancelButtonText}}</button>
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="onConfirmClick()"
+        tabindex="1"
+    >{{confirmButtonText}}</button>
 </div>
