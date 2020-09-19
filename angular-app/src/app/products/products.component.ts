@@ -53,9 +53,10 @@ export class ProductsComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogComponent,{
             data:{
               message: 'Add new product',
+              modelType: 'product',
               buttonText: {
-                ok: 'Save',
-                cancel: 'No'
+                ok: 'Add',
+                cancel: 'Close'
               }
             }
         });

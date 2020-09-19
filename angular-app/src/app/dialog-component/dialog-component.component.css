@@ -1,0 +1,14 @@
+.form-wrapper {
+  min-width: 320px;
+}
+
+.form-wrapper mat-form-field,
+.form-wrapper .mat-input-element,
+.form-wrapper .mat-form-field-infix,
+.form-wrapper .form-control-wrapper {
+  width: 100%;
+}
+
+.mat-dialog-actions {
+  padding: 20px 0;
+}
