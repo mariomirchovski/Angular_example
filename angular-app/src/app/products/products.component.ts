@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -15,8 +16,8 @@ import { ProductStoreActions, ProductStoreSelectors, RootStoreState } from 'src/
 export class ProductsComponent implements OnInit {
     public allProductsSelector$: Observable<ProductModel[]> = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
     public productsCountSelector$: Observable<any> = this.store.select(ProductStoreSelectors.getProductsCountSelector);
-
-    constructor(private store: Store<RootStoreState.State>) { }
+    public columnsChoice = new FormControl(['id', 'name', 'description']);
+    public columnsList: string[] = ['id', 'name', 'description', 'account', 'prices'];
     public displayedColumns = ['id', 'name', 'description'];
     public paginationSetting: PaginationModel = {
         page: 1,
@@ -25,8 +26,17 @@ export class ProductsComponent implements OnInit {
         sortDirection: 'asc'
     };
 
-    public loadProducts(page): void {
-        this.paginationSetting.page = page;
+
+    constructor(private store: Store<RootStoreState.State>) { }
+
+    public onOptionsSelected(event) {
+        this.displayedColumns = event.value;
+    }
+
+    public loadProducts(page) {
+        this.currentPage = page;
+
+        this.store.dispatch(new ProductStoreActions.LoadProduct({
 
         this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
     }
