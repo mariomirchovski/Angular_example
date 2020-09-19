@@ -40,6 +40,7 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
             return {
                 ...state,
                 loading: false,
+                items: action.payload.products,
                 error: action.payload.error
             };
         }

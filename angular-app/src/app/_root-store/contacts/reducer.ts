@@ -15,7 +15,8 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
             return {
                 ...state,
                 loading: false,
-                items: action.payload
+                items: action.payload.contacts,
+                meta: action.payload.meta
             };
         }
 
@@ -39,6 +40,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
             return {
                 ...state,
                 loading: false,
+                items: action.payload.contacts,
                 error: action.payload.error
             };
         }

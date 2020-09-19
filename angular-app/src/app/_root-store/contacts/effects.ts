@@ -20,7 +20,7 @@ export class ContactsEffects {
             return this.contactsService.getContacts(action.payload)
                 .pipe(
                     map((AllData: ResponseData) => {
-                        return new ContactsActions.LoadContactsSuccess(AllData.contacts);
+                        return new ContactsActions.LoadContactsSuccess(AllData);
                     }),
                     catchError(error => {
                         return of(new ContactsActions.LoadContactsFail({ error: Error }));
@@ -36,7 +36,7 @@ export class ContactsEffects {
             return this.contactsService.addContact(action.payload)
                 .pipe(
                     map((AllData: ResponseData) => {
-                        return new ContactsActions.AddContactSuccess(AllData.contacts);
+                        return new ContactsActions.AddContactSuccess(AllData);
                     }),
                     catchError(error => {
                         return of(new ContactsActions.LoadContactsFail({ error: Error }));
