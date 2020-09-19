@@ -6,15 +6,20 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [ProductsComponent],
     imports: [
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         ProductsRoutingModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        MatSelectModule
     ]
 })
 export class ProductsModule { }
