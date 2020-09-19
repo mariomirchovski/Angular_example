@@ -11,7 +11,7 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
             };
         }
         case ProductActions.ProductType.LOAD_PRODUCT_SUCCESS: {
-                console.log("LOAD_PRODUCT_SUCCESS", action.payload)
+            console.log("LOAD_PRODUCT_SUCCESS", action.payload);
             return {
                 ...state,
                 loading: false,

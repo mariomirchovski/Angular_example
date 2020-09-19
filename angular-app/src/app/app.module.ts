@@ -8,10 +8,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { RootStoreModule } from './_root-store';
+import { ProductsComponent } from './product/products/products.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        ProductsComponent
     ],
     imports: [
         BrowserModule,
