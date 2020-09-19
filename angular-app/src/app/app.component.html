@@ -1,6 +1,18 @@
-<h1>HELLO</h1>
+<mat-toolbar color="primary">  
+    <div class="header">
+        <h1>FE tech challenger</h1>  
+        <div class="header-inner">
+            <button routerLinkActive="mat-warn" mat-button routerLink="/products">Products</button>  
+            <button routerLinkActive="mat-warn" mat-button routerLink="/contacts">Contacts</button>
+        </div>
+    </div>
+</mat-toolbar>
+<div class="shell">
+    <router-outlet></router-outlet>
+</div>
+<!-- <h1>HELLO</h1>
 <nav>
-    <a mat-button [routerLink]="['/products']">Products</a>
+    <a mat-button [routerLink]="['/products']"></a>
     <a mat-button [routerLink]="['/contacts']">Contacts</a>
 </nav>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->

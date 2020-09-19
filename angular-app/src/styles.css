@@ -36,7 +36,15 @@ blockquote:before, blockquote:after {
 
 .actions-container {
   display: flex;
-  padding: 20px;
+  padding: 20px 0;
   justify-content: flex-end;
+  width: 100%;
+}
+
+.main {
+  padding: 20px 0;
+}
+
+.columns-selector {
   width: 100%;
 }
