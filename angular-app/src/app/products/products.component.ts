@@ -18,14 +18,19 @@ export class ProductsComponent implements OnInit {
   public displayedColumns = ['id', 'name','description']
   public currentPage = 1
   public pageSize = 10
+  public sortProperty = 'name'
+  public sortDirection = 'asc'
 
-  public loadProducts(page, sortProperty = 'name', sortDirection = '') {
-    this.store.dispatch(new ProductStoreActions.LoadProduct({ page: page, pageSize: this.pageSize, sortProperty: sortProperty, sortDirection: sortDirection}))
+  public loadProducts(page) {
+    this.currentPage = page
+    this.store.dispatch(new ProductStoreActions.LoadProduct({ page: page, pageSize: this.pageSize, sortProperty: this.sortProperty, sortDirection: this.sortDirection}))
   }
-
+  
   public sortProducts(sort: MatSort) {
-    console.log(sort)
-    this.loadProducts(this.currentPage, sort.active, sort.direction)
+    this.sortProperty = sort.active
+    this.sortDirection = sort.direction
+    
+    this.loadProducts(this.currentPage)
   }
 
   ngOnInit(): void {
