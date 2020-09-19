@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
     public allProductsSelector$: Observable<ProductModel[]> = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
     public productsCountSelector$: Observable<any> = this.store.select(ProductStoreSelectors.getProductsCountSelector);
     public columnsChoice = new FormControl(['id', 'name', 'description']);
-    public columnsList: string[] = ['id', 'name', 'description', 'account', 'prices'];
+    public columnsList: string[] = ['id', 'name', 'description', 'productNo', 'accountId'];
     public displayedColumns = ['id', 'name', 'description'];
     public paginationSetting: PaginationModel = {
         page: 1,
@@ -26,17 +26,14 @@ export class ProductsComponent implements OnInit {
         sortDirection: 'asc'
     };
 
-
     constructor(private store: Store<RootStoreState.State>) { }
 
-    public onOptionsSelected(event) {
+    public onOptionsSelected(event): void {
         this.displayedColumns = event.value;
     }
 
-    public loadProducts(page) {
-        this.currentPage = page;
-
-        this.store.dispatch(new ProductStoreActions.LoadProduct({
+    public loadProducts(page): void {
+        this.paginationSetting.page = page;
 
         this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
     }
