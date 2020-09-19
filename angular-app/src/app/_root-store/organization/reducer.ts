@@ -11,9 +11,10 @@ export function OrganizationReducer(state: OrganizationState = InitialState,
         }
 
         case OrganizationActions.OrganizationType.LOAD_ORGANIZATION_SUCCESS: {
+            console.log('id', action.payload);
             return {
                 ...state,
-                organizationId: action.payload
+                organizationId: action.payload.organization.id
             };
         }
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ContactsStoreModule } from './contacts';
+import { OrganizationStoreModule } from './organization';
 import { ProductStoreModule } from './product';
 
 @NgModule({
@@ -10,9 +11,9 @@ import { ProductStoreModule } from './product';
         CommonModule,
         ProductStoreModule,
         ContactsStoreModule,
+        OrganizationStoreModule,
         StoreModule.forRoot({}),
-        EffectsModule.forRoot([]),
-
+        EffectsModule.forRoot([])
     ],
     declarations: []
 })
