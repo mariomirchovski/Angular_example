@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
     public allProductsSelector$: Observable<ProductModel[]> = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
     public productsCountSelector$: Observable<any> = this.store.select(ProductStoreSelectors.getProductsCountSelector);
     public columnsChoice = new FormControl(['id', 'name', 'description']);
-    public columnsList: string[] = ['id', 'name', 'description', 'account', 'prices'];
+    public columnsList: string[] = ['id', 'name', 'description', 'productNo', 'accountId'];
     public displayedColumns = ['id', 'name', 'description'];
     public currentPage = 1;
     public pageSize = 10;
