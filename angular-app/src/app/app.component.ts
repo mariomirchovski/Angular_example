@@ -8,8 +8,6 @@ import { ProductService } from './core/services/product.service';
 })
 export class AppComponent {
     constructor(private productService: ProductService) {
-        this.productService.getAll().subscribe((res) => {
-            console.log('saddasd', res)
-        })
+        
     }
 }

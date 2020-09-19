@@ -7,7 +7,8 @@ import { RootStoreState } from './../index';
 import * as ProductActions from './actions';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
-
+import { ProductModel } from '../../models/product.model'
+import { ResponseData } from 'src/app/core/services/config';
 @Injectable()
 export class ProductEffects {
 
@@ -21,14 +22,12 @@ export class ProductEffects {
     @Effect()
     public loadProduct$: Observable<ProductActions.LoadProductSuccess | ProductActions.LoadProductFail> = this.actions$.pipe(
         ofType(ProductActions.ProductType.LOAD_PRODUCT),
-        map((action: ProductActions.LoadProduct) => {
-            return action.payload;
-        }),
-        switchMap((productData) => {
-            return this.productService.getAll(productData)
+        switchMap(() => {
+            console.log("GET ALL PRODUCTS")
+            return this.productService.getAll()
                 .pipe(
-                    map((AllData: /*ProguctAllData*/any) => {
-                        return new ProductActions.LoadProductSuccess({...AllData});
+                    map((AllData: ResponseData) => {
+                        return new ProductActions.LoadProductSuccess({...AllData.products});
                     }),
                     catchError(error => {
                         return of(new ProductActions.LoadProductFail({ error: Error }));

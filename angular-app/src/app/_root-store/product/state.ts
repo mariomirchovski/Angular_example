@@ -1,5 +1,6 @@
+import { ProductModel } from './../../models/product.model'
 export interface ProductState {
-    items: string[];
+    items: ProductModel[];
     loading: boolean;
     error: any;
 }

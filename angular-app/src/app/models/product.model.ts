@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductModel {
     accountId: string,
     description: string,
     id: string,
