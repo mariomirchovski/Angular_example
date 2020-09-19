@@ -27,7 +27,7 @@ export class ProductEffects {
             return this.productService.getAll()
                 .pipe(
                     map((AllData: ResponseData) => {
-                        return new ProductActions.LoadProductSuccess({...AllData.products});
+                        return new ProductActions.LoadProductSuccess(AllData.products);
                     }),
                     catchError(error => {
                         return of(new ProductActions.LoadProductFail({ error: Error }));

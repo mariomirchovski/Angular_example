@@ -10,7 +10,7 @@ const headers = new HttpHeaders({
 
 export interface ResponseData {
     meta: any,
-    products?: Array<ProductModel>
+    products?: ProductModel[]
 }
 
 interface Request {
