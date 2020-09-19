@@ -13,9 +13,9 @@ export class ProductService {
     getAll(payload): Observable<ResponseData> {
         let sort = '';
         if(payload.sortProperty) {
-            sort = `&&sortProperty=${payload.sortProperty}&&sortDirection=${payload.sortDirection}`;
+            sort = `&sortProperty=${payload.sortProperty}&sortDirection=${payload.sortDirection}`;
         }
         
-        return RequestHelper.get(this.http, `/products?page=${payload.page}&&pageSize=${payload.pageSize}${sort}`)
+        return RequestHelper.get(this.http, `/products?page=${payload.page}&pageSize=${payload.pageSize}${sort}`)
     }
 }
