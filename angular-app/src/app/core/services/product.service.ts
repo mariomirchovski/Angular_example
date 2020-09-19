@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequestHelper, ResponseData } from './config';
 
@@ -17,5 +17,9 @@ export class ProductService {
         }
 
         return RequestHelper.get(this.http, `/products?page=${payload.page}&pageSize=${payload.pageSize}${sort}`);
+    }
+
+    addProduct(payload): Observable<any> {
+        return RequestHelper.post(this.http, `/products`, payload);
     }
 }

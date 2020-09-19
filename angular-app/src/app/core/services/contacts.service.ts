@@ -18,4 +18,8 @@ export class ContactsService {
 
         return RequestHelper.get(this.http, `/contacts?page=${payload.page}&pageSize=${payload.pageSize}${sort}`);
     }
+
+    addContact(payload): Observable<any> {
+        return RequestHelper.post(this.http, `/contacts`, payload);
+    }
 }

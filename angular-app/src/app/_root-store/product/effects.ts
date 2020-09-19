@@ -1,14 +1,12 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { ResponseData } from 'src/app/core/services/config';
 import { ProductService } from './../../core/services/product.service';
 import { RootStoreState } from './../index';
 import * as ProductActions from './actions';
-import { from, Observable, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
-import { ProductModel } from '../../models/product.model';
-import { ResponseData } from 'src/app/core/services/config';
 
 @Injectable()
 
@@ -27,6 +25,22 @@ export class ProductEffects {
                 .pipe(
                     map((AllData: ResponseData) => {
                         return new ProductActions.LoadProductSuccess(AllData);
+                    }),
+                    catchError(err => {
+                        return of(new ProductActions.LoadProductFail({ error: err }));
+                    })
+                );
+        })
+    );
+
+    @Effect()
+    public addProduct$: Observable<ProductActions.AddProductSuccess | ProductActions.LoadProductFail> = this.actions$.pipe(
+        ofType(ProductActions.ProductType.LOAD_PRODUCT),
+        switchMap((action: any) => {
+            return this.productService.addProduct(action.payload)
+                .pipe(
+                    map((AllData: ResponseData) => {
+                        return new ProductActions.AddProductSuccess(AllData);
                     }),
                     catchError(err => {
                         return of(new ProductActions.LoadProductFail({ error: err }));

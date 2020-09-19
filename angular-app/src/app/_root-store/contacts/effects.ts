@@ -28,4 +28,20 @@ export class ContactsEffects {
                 );
         })
     );
+
+    @Effect()
+    public addContact$: Observable<ContactsActions.AddContactSuccess | ContactsActions.LoadContactsFail> = this.actions$.pipe(
+        ofType(ContactsActions.ContactsType.LOAD_CONTACTS),
+        switchMap((action: any) => {
+            return this.contactsService.addContact(action.payload)
+                .pipe(
+                    map((AllData: ResponseData) => {
+                        return new ContactsActions.AddContactSuccess(AllData.contacts);
+                    }),
+                    catchError(error => {
+                        return of(new ContactsActions.LoadContactsFail({ error: Error }));
+                    })
+                );
+        })
+    );
 }

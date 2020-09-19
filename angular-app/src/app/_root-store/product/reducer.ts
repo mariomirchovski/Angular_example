@@ -1,5 +1,5 @@
 import * as ProductActions from './actions';
-import { ProductState, InitialState } from './state';
+import { InitialState, ProductState } from './state';
 
 export function ProductReducer(state: ProductState = InitialState, action: ProductActions.ProductActions): ProductState {
     switch (action.type) {
@@ -10,6 +10,7 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
                 error: null
             };
         }
+
         case ProductActions.ProductType.LOAD_PRODUCT_SUCCESS: {
             return {
                 ...state,
@@ -18,6 +19,7 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
                 meta: action.payload.meta
             };
         }
+
         case ProductActions.ProductType.LOAD_PRODUCT_FAIL: {
             return {
                 ...state,
@@ -25,11 +27,29 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
                 error: action.payload.error
             };
         }
+
+        case ProductActions.ProductType.ADD_PRODUCT: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        }
+
+        case ProductActions.ProductType.ADD_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        }
+
         case ProductActions.ProductType.RESET_STORE: {
             return {
                 ...InitialState
             };
         }
+
         default:
             return state;
     }

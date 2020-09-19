@@ -10,6 +10,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
                 error: null
             };
         }
+
         case ContactsActions.ContactsType.LOAD_CONTACTS_SUCCESS: {
             return {
                 ...state,
@@ -17,6 +18,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
                 items: action.payload
             };
         }
+
         case ContactsActions.ContactsType.LOAD_CONTACTS_FAIL: {
             return {
                 ...state,
@@ -24,12 +26,29 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
                 error: action.payload.error
             };
         }
+
+        case ContactsActions.ContactsType.ADD_CONTACT: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        }
+
+        case ContactsActions.ContactsType.ADD_CONTACT_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+        }
+
         case ContactsActions.ContactsType.RESET_STORE: {
             return {
                 ...InitialState
             };
         }
         default:
-        return state;
+            return state;
     }
 }

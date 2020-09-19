@@ -1,17 +1,20 @@
 import { Action } from '@ngrx/store';
 import { ContactsModel } from 'src/app/models/contacts.model';
+import { PaginationModel } from 'src/app/models/pagination.model';
 
 export enum ContactsType {
     LOAD_CONTACTS = '[CONTACTS] Load contacts',
     LOAD_CONTACTS_SUCCESS = '[CONTACTS] Load contacts Success',
     LOAD_CONTACTS_FAIL = '[CONTACTS] contacts Fail',
+    ADD_CONTACT = '[CONTACTS] add contacts',
+    ADD_CONTACT_SUCCESS = '[CONTACTS] add contacts success',
     RESET_STORE = '[CONTACTS] Reset Store',
 }
 
 export class LoadContacts implements Action {
     readonly type = ContactsType.LOAD_CONTACTS;
 
-    constructor(public payload: any) { }
+    constructor(public payload: PaginationModel) { }
 }
 
 export class LoadContactsSuccess implements Action {
@@ -26,6 +29,18 @@ export class LoadContactsFail implements Action {
     constructor(public payload: any) { }
 }
 
+export class AddContact implements Action {
+    readonly type = ContactsType.ADD_CONTACT;
+
+    constructor(public payload: any) { }
+}
+
+export class AddContactSuccess implements Action {
+    readonly type = ContactsType.ADD_CONTACT_SUCCESS;
+
+    constructor(public payload: any) { }
+}
+
 export class ResetStore implements Action {
     readonly type = ContactsType.RESET_STORE;
 
@@ -35,5 +50,7 @@ export class ResetStore implements Action {
 export type ContactsActions = LoadContacts
     | LoadContactsSuccess
     | LoadContactsFail
+    | AddContact
+    | AddContactSuccess
     | ResetStore
     ;
