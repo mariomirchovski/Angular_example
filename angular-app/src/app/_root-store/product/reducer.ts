@@ -36,10 +36,12 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
         }
 
         case ProductActions.ProductType.ADD_PRODUCT_SUCCESS: {
+            const allEntities = [...action.payload.products, ...state.items];
+
             return {
                 ...state,
                 loading: false,
-                items: action.payload.products,
+                items: allEntities,
                 error: action.payload.error
             };
         }

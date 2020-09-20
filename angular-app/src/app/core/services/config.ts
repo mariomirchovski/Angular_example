@@ -28,11 +28,7 @@ export const RequestHelper: Request = {
         });
     },
     post: (http, url, data) => {
-        return http.post(API + url, {
-            observe: 'body',
-            body: data,
-            headers: headerOptions
-        });
+        const options = { headers: headerOptions };
+        return http.post(API + url, data, options);
     }
 };
-

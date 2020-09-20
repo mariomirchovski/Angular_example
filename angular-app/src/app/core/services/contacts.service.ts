@@ -20,6 +20,6 @@ export class ContactsService {
     }
 
     addContact(payload): Observable<any> {
-        return RequestHelper.post(this.http, `/contacts`, payload);
+        return RequestHelper.post(this.http, `/contacts`, { contact: payload });
     }
 }

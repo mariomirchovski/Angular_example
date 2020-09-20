@@ -36,10 +36,12 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
         }
 
         case ContactsActions.ContactsType.ADD_CONTACT_SUCCESS: {
+            const allEntities = [...action.payload.contacts, ...state.items];
+
             return {
                 ...state,
                 loading: false,
-                items: action.payload.contacts,
+                items: allEntities,
                 error: action.payload.error
             };
         }

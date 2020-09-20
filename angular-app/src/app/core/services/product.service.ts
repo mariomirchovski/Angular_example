@@ -20,6 +20,6 @@ export class ProductService {
     }
 
     addProduct(payload): Observable<any> {
-        return RequestHelper.post(this.http, `/products`, payload);
+        return RequestHelper.post(this.http, `/products`, { product: payload });
     }
 }
