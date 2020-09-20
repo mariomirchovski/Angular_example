@@ -19,15 +19,15 @@ export class ContactsComponent implements OnInit {
     public allContactsSelector$: Observable<ContactsModel[]> = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
     public contactsCountSelector$: Observable<any> = this.store.select(ContactsStoreSelectors.getContactsCountSelector);
     /**
-     * @param  {Store<RootStoreState.State>} privatestore Rootstore
-     * @param  {MatDialog} privatedialog MatDialog service
+     * @param  Store<RootStoreState.State> private store Rootstore
+     * @param  MatDialog private dialog MatDialog service
      */
     constructor(
         private store: Store<RootStoreState.State>,
         private dialog: MatDialog) { }
     public displayedColumns = ['id', 'name', 'description'];
 
-    public appliedFilter: string = '';
+    public appliedFilter = '';
 
     public paginationSetting: PaginationModel = {
         page: 1,
@@ -36,7 +36,7 @@ export class ContactsComponent implements OnInit {
         sortDirection: 'asc'
     };
     /**
-     * @param  {number} currentPage which page need to open
+     * @param  number currentPage which page need to open
      * @returns void
      */
     public loadContacts(currentPage: number): void {
@@ -48,9 +48,9 @@ export class ContactsComponent implements OnInit {
         this.store.dispatch(new ContactsStoreActions.LoadContacts(this.paginationSetting));
     }
     /**
-     * @param  {string} filterValue value of the search field
+     * @param  string filterValue value of the search field
      */
-    public filterTable(filterValue: string):void {
+    public filterTable(filterValue: string): void {
         this.appliedFilter = filterValue;
         if (filterValue.length > 0) {
             this.allContactsSelector$ = this.allContactsSelector$.pipe(map(
@@ -61,7 +61,7 @@ export class ContactsComponent implements OnInit {
         }
     }
     /**
-     * @param  {MatSort} sort sort object from mat-sort
+     * @param  MatSort sort sort object from mat-sort
      * @returns void
      */
     public sortContacts(sort: MatSort): void {

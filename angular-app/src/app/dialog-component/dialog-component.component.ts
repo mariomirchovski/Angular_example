@@ -8,30 +8,30 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog-component.component.scss']
 })
 export class DialogComponent {
-  message: string = ""
-  modelType: string = ""
-  confirmButtonText = "Yes"
-  cancelButtonText = "Cancel"
+  message = '';
+  modelType = '';
+  confirmButtonText = 'Yes';
+  cancelButtonText = 'Cancel';
   formProduct = {
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     unitPrice: new FormControl('', [Validators.required]),
     currencyId: new FormControl('', [Validators.required])
-  }
+  };
+
   formContact = {
     name: new FormControl('', [Validators.required]),
     countryId: new FormControl('', [Validators.required])
-  }
-  
+  };
+
   /**
-   * @param  {} @Inject(MAT_DIALOG_DATA
-   * @param  {any} privatedata
-   * @param  {MatDialogRef<DialogComponent>} privatedialogRef
+   * @param  private data dialog data
+   * @param  MatDialogRef<DialogComponent> private dialogRef
    */
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<DialogComponent>) {
-      if(data){
+      if (data){
         this.message = data.message || this.message;
         this.modelType = data.modelType || this.modelType;
         if (data.buttonText) {
@@ -40,11 +40,8 @@ export class DialogComponent {
         }
       }
   }
-  /**
-   * @param  {} form
-   * @param  {} field
-   */
-  getErrorMessage(form, field) {
+
+  getErrorMessage(form, field): string {
     if (this[form][field].hasError('required')) {
       return 'You must enter a value';
     }

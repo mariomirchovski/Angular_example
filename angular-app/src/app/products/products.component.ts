@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
     public columnsChoice = new FormControl(['id', 'name', 'description']);
     public columnsList: string[] = ['id', 'name', 'description', 'productNo', 'accountId'];
     public displayedColumns = ['id', 'name', 'description'];
-    public appliedFilter: string = '';
+    public appliedFilter = '';
     public paginationSetting: PaginationModel = {
         page: 1,
         pageSize: 10,
@@ -35,22 +35,22 @@ export class ProductsComponent implements OnInit {
     table;
 
     /**
-     * @param  {Store<RootStoreState.State>} privatestore Rootstore
-     * @param  {MatDialog} privatedialog MatDialog service
+     * @param  Store<RootStoreState.State> private store Rootstore
+     * @param  MatDialog private dialog MatDialog service
      */
     constructor(
         private store: Store<RootStoreState.State>,
         private dialog: MatDialog) { }
 
     /**
-     * @param  {} event select option event
+     * @param  event select option event
      * @returns void
      */
     public onOptionsSelected(event): void {
         this.displayedColumns = event.value;
     }
     /**
-     * @param  {number} currentPage which page need to open
+     * @param  number currentPage which page need to open
      * @returns void
      */
     public loadProducts(currentPage: number): void {
@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit {
         this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
     }
     /**
-     * @param  {string} filterValue value of the search field
+     * @param  string filterValue value of the search field
      */
     public filterTable(filterValue: string): void {
         this.appliedFilter = filterValue;
@@ -75,7 +75,7 @@ export class ProductsComponent implements OnInit {
         }
     }
     /**
-     * @param  {MatSort} sort sort object from mat-sort
+     * @param  MatSort sort sort object from mat-sort
      * @returns void
      */
     public sortProducts(sort: MatSort): void {
