@@ -108,10 +108,6 @@ export class ProductsComponent implements OnInit {
                 }
             }
         });
-
-        dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-            console.log('confirmed: ', confirmed);
-        });
     }
     /**
      * @returns void
