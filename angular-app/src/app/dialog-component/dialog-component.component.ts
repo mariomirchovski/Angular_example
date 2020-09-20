@@ -96,7 +96,7 @@ export class DialogComponent implements OnInit {
 
             this.store.dispatch(new ProductStoreActions.AddProduct(productData));
         }
-
+        
         this.dialogRef.close(true);
     }
 }

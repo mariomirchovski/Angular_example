@@ -104,10 +104,6 @@ export class ContactsComponent implements OnInit {
                 }
             }
         });
-
-        dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-            console.log('confirmed: ', confirmed);
-        });
     }
     /**
      * @returns void
