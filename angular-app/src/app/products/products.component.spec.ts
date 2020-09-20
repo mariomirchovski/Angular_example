@@ -16,6 +16,7 @@ import { RootStoreModule } from '../_root-store';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -39,7 +40,8 @@ describe('ProductsComponent', () => {
         MatSelectModule,
         MatInputModule,
         MatFormFieldModule,
-        MatButtonModule
+        MatButtonModule,
+        MatProgressSpinnerModule,
       ]
     })
     .compileComponents();

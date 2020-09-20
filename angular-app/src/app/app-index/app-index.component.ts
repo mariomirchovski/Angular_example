@@ -5,9 +5,9 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './app-index.component.html',
     styleUrls: ['./app-index.component.scss']
 })
-
-export class IndexComponent implements OnInit {
+export class AppIndexComponent implements OnInit {
     constructor() { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 }

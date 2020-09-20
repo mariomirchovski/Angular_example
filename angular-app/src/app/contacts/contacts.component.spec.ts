@@ -15,6 +15,7 @@ import { DialogComponent } from '../dialog-component/dialog-component.component'
 import { RootStoreModule } from '../_root-store';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ContactsComponent', () => {
@@ -39,7 +40,8 @@ describe('ContactsComponent', () => {
                 MatSelectModule,
                 MatInputModule,
                 MatFormFieldModule,
-                MatButtonModule
+                MatButtonModule,
+                MatProgressSpinnerModule
             ]
         })
             .compileComponents();

@@ -21,7 +21,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     public allContactsSelector$: Observable<ContactsModel[]> = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
     public contactsCountSelector$: Observable<any> = this.store.select(ContactsStoreSelectors.getContactsCountSelector);
     public columnsChoice = new FormControl(['id', 'name', 'phone']);
-    public columnsList: string[] = ['id', 'name', 'phone', 'type', 'zipcodeText'];
+    public columnsList: string[] = ['id', 'name', 'phone', 'type', 'zipcodeText', 'createdTime', 'accessCode'];
     public displayedColumns = ['id', 'name', 'phone'];
     public appliedFilter = '';
     public paginationSetting: PaginationModel = {

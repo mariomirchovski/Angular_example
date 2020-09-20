@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderComponent } from './app-header/app-header.component';
-import { IndexComponent } from './app-index/app-index.component';
+import { AppIndexComponent } from './app-index/app-index.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -23,9 +23,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 @NgModule({
     declarations: [
         AppComponent,
-        HeaderComponent, 
-        IndexComponent,
-        DialogComponent
+        HeaderComponent,
+        DialogComponent,
+        AppIndexComponent
     ],
     imports: [
         BrowserModule,
@@ -38,14 +38,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         MatToolbarModule,
         MatFormFieldModule,
         MatInputModule,
-        FormsModule, 
+        FormsModule,
         ReactiveFormsModule,
         MatSelectModule,
         MatSnackBarModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [],
-    entryComponents: [DialogComponent, HeaderComponent, IndexComponent],
+    entryComponents: [DialogComponent, HeaderComponent, AppIndexComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

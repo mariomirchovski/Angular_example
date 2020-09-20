@@ -1,12 +1,12 @@
 import { NgModule, NgZone } from '@angular/core';
 import { Routes, RouterModule, Router, PreloadAllModules } from '@angular/router';
-import { IndexComponent } from './app-index/app-index.component';
+import { AppIndexComponent } from './app-index/app-index.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', component: IndexComponent },
+        { path: '', component: AppIndexComponent },
       { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
       { path: 'contacts', loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule) },
     ]
