@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ContactsModel } from 'src/app/models/contacts.model';
 import { ContactsStoreActions, ContactsStoreSelectors, RootStoreState } from 'src/app/_root-store';
@@ -23,6 +24,8 @@ export class ContactsComponent implements OnInit {
         private dialog: MatDialog) { }
     public displayedColumns = ['id', 'name', 'description'];
 
+    public appliedFilter: string = '';
+
     public paginationSetting: PaginationModel = {
         page: 1,
         pageSize: 10,
@@ -37,6 +40,17 @@ export class ContactsComponent implements OnInit {
         };
 
         this.store.dispatch(new ContactsStoreActions.LoadContacts(this.paginationSetting));
+    }
+
+    public filterTable(filterValue: string) {
+        this.appliedFilter = filterValue
+        if (filterValue.length > 0) {
+            this.allContactsSelector$ = this.allContactsSelector$.pipe(map(
+                (products) => products.filter(product => product.name.toLowerCase().indexOf(filterValue.trim().toLowerCase()) > -1))
+            )
+        } else {
+            this.allContactsSelector$ = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector)
+        }
     }
 
     public sortContacts(sort: MatSort): void {

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { PaginationModel } from 'src/app/models/pagination.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductStoreActions, ProductStoreSelectors, RootStoreState } from 'src/app/_root-store';
@@ -21,12 +23,16 @@ export class ProductsComponent implements OnInit {
     public columnsChoice = new FormControl(['id', 'name', 'description']);
     public columnsList: string[] = ['id', 'name', 'description', 'productNo', 'accountId'];
     public displayedColumns = ['id', 'name', 'description'];
+    public appliedFilter: string = '';
     public paginationSetting: PaginationModel = {
         page: 1,
         pageSize: 10,
         sortProperty: 'name',
         sortDirection: 'asc'
     };
+
+    @ViewChild(MatTable)
+    table;
 
     constructor(
         private store: Store<RootStoreState.State>,
@@ -43,6 +49,17 @@ export class ProductsComponent implements OnInit {
         };
 
         this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
+    }
+
+    public filterTable(filterValue: string) {
+        this.appliedFilter = filterValue
+        if (filterValue.length > 0) {
+            this.allProductsSelector$ = this.allProductsSelector$.pipe(map(
+                (products) => products.filter(product => product.name.toLowerCase().indexOf(filterValue.trim().toLowerCase()) > -1))
+            )
+        } else {
+            this.allProductsSelector$ = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector)
+        }
     }
 
     public sortProducts(sort: MatSort): void {

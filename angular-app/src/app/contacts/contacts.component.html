@@ -1,10 +1,12 @@
 <div class="main">
     <h2>Contacts</h2>
 
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8" *ngIf="(allContactsSelector$) as contacts">
+        <mat-form-field>
+            <input matInput (keyup)="filterTable($event.target.value)" placeholder="Search in current page">
+        </mat-form-field>
         <table
             mat-table
-            *ngIf="(allContactsSelector$) as contacts"
             [dataSource]="contacts"
             matSort
             class="mat-elevation-z8"
@@ -56,7 +58,7 @@
             ></tr>
         </table>
         <mat-paginator
-            [length]="contactsCountSelector$ | async"
+            [length]="appliedFilter.length > 0 ? (contacts | async).length : contactsCountSelector$ | async"
             [pageSize]="paginationSetting.pageSize"
             (page)="loadContacts($event.pageIndex + 1)"
             showFirstLastButtons

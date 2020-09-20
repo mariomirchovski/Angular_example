@@ -1,7 +1,11 @@
 <div class="main">
     <h2>Products</h2>
 
-    <div class="mat-elevation-z8">
+
+    <div class="mat-elevation-z8" *ngIf="(allProductsSelector$) as products">
+        <mat-form-field>
+            <input matInput (keyup)="filterTable($event.target.value)" placeholder="Search in current page">
+        </mat-form-field>
         <mat-form-field appearance="fill" class="columns-selector">
             <mat-label>Columns</mat-label>
             <mat-select (selectionChange)='onOptionsSelected($event)' [formControl]="columnsChoice" multiple>
@@ -9,8 +13,10 @@
             </mat-select>
         </mat-form-field>
 
-        <table mat-table *ngIf="(allProductsSelector$) as products" [dataSource]="products" 
-            matSort class="mat-elevation-z8" (matSortChange) = "sortProducts($event)" >
+        <table mat-table #table [dataSource]="products" matSort class="mat-elevation-z8"
+            (matSortChange)="sortProducts($event)">
+
+
             <!-- Name Column -->
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -38,7 +44,8 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [length]="productsCountSelector$ | async" [pageSize]="paginationSetting.pageSize" (page)="loadProducts($event.pageIndex + 1)" showFirstLastButtons></mat-paginator>
+        <mat-paginator [length]="appliedFilter.length > 0 ? (products | async).length : productsCountSelector$ | async" [pageSize]="paginationSetting.pageSize"
+            (page)="loadProducts($event.pageIndex + 1)" showFirstLastButtons></mat-paginator>
     </div>
 
     <div class="actions-container">
