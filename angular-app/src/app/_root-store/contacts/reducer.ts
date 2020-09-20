@@ -6,8 +6,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
         case ContactsActions.ContactsType.LOAD_CONTACTS: {
             return {
                 ...state,
-                loading: true,
-                error: null
+                loading: true
             };
         }
 
@@ -23,8 +22,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
         case ContactsActions.ContactsType.LOAD_CONTACTS_FAIL: {
             return {
                 ...state,
-                loading: false,
-                error: action.payload.error
+                loading: false
             };
         }
 
@@ -41,8 +39,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
             return {
                 ...state,
                 loading: false,
-                items: allEntities,
-                error: action.payload.error ? action.payload.error : 'Ops! Something went wrong!'
+                items: allEntities
             };
         }
 

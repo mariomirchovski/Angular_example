@@ -3,12 +3,10 @@ export interface ProductState {
     items: ProductModel[];
     meta: any;
     loading: boolean;
-    error: any;
 }
 
 export const InitialState: ProductState = {
     items: [],
     meta: {},
-    loading: false,
-    error: null
+    loading: false
 };

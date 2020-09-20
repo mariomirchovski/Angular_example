@@ -7,7 +7,6 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
             return {
                 ...state,
                 loading: true,
-                error: null
             };
         }
 
@@ -23,8 +22,7 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
         case ProductActions.ProductType.LOAD_PRODUCT_FAIL: {
             return {
                 ...state,
-                loading: false,
-                error: action.payload.error
+                loading: false
             };
         }
 
@@ -42,7 +40,6 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
                 ...state,
                 loading: false,
                 items: allEntities,
-                error: action.payload.error
             };
         }
 

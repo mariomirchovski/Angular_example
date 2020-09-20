@@ -20,7 +20,6 @@ import { PaginationModel } from '../models/pagination.model';
 export class ContactsComponent implements OnInit {
     public allContactsSelector$: Observable<ContactsModel[]> = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
     public contactsCountSelector$: Observable<any> = this.store.select(ContactsStoreSelectors.getContactsCountSelector);
-    public errorSelector$: Observable<any> = this.store.select(ContactsStoreSelectors.getContactsErrorsSelector);
     public columnsChoice = new FormControl(['id', 'name', 'phone']);
     public columnsList: string[] = ['id', 'name', 'phone', 'type', 'zipcodeText'];
     public displayedColumns = ['id', 'name', 'phone'];

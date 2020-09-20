@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { ResponseData } from 'src/app/core/services/config';
+import * as ErrorActions from '../errors/actions';
+import { ErrorState } from '../errors/state';
 import { ProductService } from './../../core/services/product.service';
 import * as ProductActions from './actions';
 
@@ -15,7 +18,7 @@ export class ProductEffects {
     ) { }
 
     @Effect()
-    public loadProduct$: Observable<ProductActions.LoadProductSuccess | ProductActions.LoadProductFail> = this.actions$.pipe(
+    public loadProduct$: Observable<ProductActions.LoadProductSuccess | ErrorActions.ErrorAction> = this.actions$.pipe(
         ofType(ProductActions.ProductType.LOAD_PRODUCT),
         switchMap((action: any) => {
             return this.productService.getAll(action.payload)
@@ -24,23 +27,43 @@ export class ProductEffects {
                         return new ProductActions.LoadProductSuccess(AllData);
                     }),
                     catchError(err => {
-                        return of(new ProductActions.LoadProductFail({ error: err }));
+                        const error: ErrorState = {
+                            type: 1,
+                            message: err.message ? err.message : 'Ops! Something went wrong!'
+                        };
+
+                        return of(new ErrorActions.ErrorAction(error));
                     })
                 );
         })
     );
 
     @Effect()
-    public addProduct$: Observable<ProductActions.AddProductSuccess | ProductActions.LoadProductFail> = this.actions$.pipe(
+    public addProduct$: Observable<Action[] | ErrorActions.ErrorAction> = this.actions$.pipe(
         ofType(ProductActions.ProductType.ADD_PRODUCT),
         switchMap((action: any) => {
             return this.productService.addProduct(action.payload)
                 .pipe(
                     map((AllData: ResponseData) => {
-                        return new ProductActions.AddProductSuccess(AllData);
+                        const error: ErrorState = {
+                            type: 0,
+                            message: 'Product successfully added!'
+                        };
+
+                        const arrayOfActions: Action[] = [
+                            new ErrorActions.ErrorAction(error),
+                            new ProductActions.AddProductSuccess(AllData)
+                        ];
+
+                        return arrayOfActions;
                     }),
                     catchError(err => {
-                        return of(new ProductActions.LoadProductFail({ error: err }));
+                        const error: ErrorState = {
+                            type: 1,
+                            message: err.message ? err.message : 'Ops! Something went wrong!'
+                        };
+
+                        return of(new ErrorActions.ErrorAction(error));
                     })
                 );
         })

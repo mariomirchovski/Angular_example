@@ -25,14 +25,7 @@ export class LoadOrganizationFail implements Action {
     constructor(public payload: any) { }
 }
 
-export class ResetStore implements Action {
-    readonly type = OrganizationType.RESET_STORE;
-
-    constructor() { }
-}
-
 export type OrganizationActions = LoadOrganization
     | LoadOrganizationSuccess
     | LoadOrganizationFail
-    | ResetStore
     ;

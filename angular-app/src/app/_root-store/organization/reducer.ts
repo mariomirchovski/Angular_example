@@ -20,15 +20,9 @@ export function OrganizationReducer(state: OrganizationState = InitialState,
         case OrganizationActions.OrganizationType.LOAD_ORGANIZATION_FAIL: {
             return {
                 ...state,
-                error: action.payload.error
             };
         }
 
-        case OrganizationActions.OrganizationType.RESET_STORE: {
-            return {
-                ...InitialState
-            };
-        }
         default:
             return state;
     }
