@@ -45,6 +45,13 @@ blockquote:before, blockquote:after {
   padding: 20px 0;
 }
 
+.shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 15px;
+}
+
 .search-wrapper {
   padding: 10px;
 }
