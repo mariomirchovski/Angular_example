@@ -10,6 +10,7 @@ import { PaginationModel } from 'src/app/models/pagination.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductStoreActions, ProductStoreSelectors, RootStoreState } from 'src/app/_root-store';
 import { DialogComponent } from '../dialog-component/dialog-component.component';
+import { DialogModeEnum } from '../enums/dialog.enum';
 
 @Component({
     selector: 'app-products',
@@ -94,7 +95,7 @@ export class ProductsComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogComponent, {
             data: {
                 message: 'Add new product',
-                modelType: 'product',
+                modelType: DialogModeEnum.product,
                 buttonText: {
                     ok: 'Add',
                     cancel: 'Close'
@@ -110,6 +111,6 @@ export class ProductsComponent implements OnInit {
      * @returns void
      */
     ngOnInit(): void {
-        this.loadProducts(1);
+        this.loadProducts(this.paginationSetting.page);
     }
 }

@@ -4,7 +4,7 @@
     </h3>
 
     <div
-        *ngIf="modelType === 'product'"
+        *ngIf="modelType === 1"
         class="form-wrapper"
     >
         <div class="form-control-wrapper">
@@ -67,7 +67,7 @@
         </div>
     </div>
     <div
-        *ngIf="modelType === 'contact'"
+        *ngIf="modelType === 0"
         class="form-wrapper"
     >
         <div class="form-control-wrapper">
@@ -92,9 +92,9 @@
                     name="countryId"
                     required
                 >
-                    <mat-option value="BGN">BGN</mat-option>
-                    <mat-option value="EUR">EUR</mat-option>
-                    <mat-option value="USD">USD</mat-option>
+                    <mat-option value="BG">Bulgaria</mat-option>
+                    <mat-option value="IT">Italia</mat-option>
+                    <mat-option value="FR">France</mat-option>
                 </mat-select>
                 <mat-error *ngIf="formContact.countryId.invalid">{{getErrorMessage('formContact', 'countryId')}}
                 </mat-error>

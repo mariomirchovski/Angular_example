@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ContactsModel } from 'src/app/models/contacts.model';
 import { ContactsStoreActions, ContactsStoreSelectors, RootStoreState } from 'src/app/_root-store';
 import { DialogComponent } from '../dialog-component/dialog-component.component';
+import { DialogModeEnum } from '../enums/dialog.enum';
 import { PaginationModel } from '../models/pagination.model';
-import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-contacts',
@@ -90,7 +91,7 @@ export class ContactsComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogComponent, {
             data: {
                 message: 'Add new contact',
-                modelType: 'contact',
+                modelType: DialogModeEnum.contact,
                 buttonText: {
                     ok: 'Add',
                     cancel: 'Close'
