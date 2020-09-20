@@ -1,19 +1,20 @@
 <div class="main">
     <h2>Products</h2>
 
-
     <div class="mat-elevation-z8" *ngIf="(allProductsSelector$) as products">
-        <div class="search-wrapper">
-            <mat-form-field class="top-inputs">
-                <input matInput (keyup)="filterTable($event.target.value)" placeholder="Search in current page">
+        <div class="header-actions">
+            <div class="search-wrapper">
+                <mat-form-field class="top-inputs">
+                    <input matInput (keyup)="filterTable($event.target.value)" placeholder="Search in current page">
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="fill" class="top-inputs">
+                <mat-label>Columns</mat-label>
+                <mat-select (selectionChange)='onOptionsSelected($event)' [formControl]="columnsChoice" multiple>
+                    <mat-option *ngFor="let column of columnsList" [value]="column">{{column}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
-        <mat-form-field appearance="fill" class="top-inputs">
-            <mat-label>Columns</mat-label>
-            <mat-select (selectionChange)='onOptionsSelected($event)' [formControl]="columnsChoice" multiple>
-                <mat-option *ngFor="let column of columnsList" [value]="column">{{column}}</mat-option>
-            </mat-select>
-        </mat-form-field>
 
         <table mat-table #table [dataSource]="products" matSort class="mat-elevation-z8"
             (matSortChange)="sortProducts($event)">

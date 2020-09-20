@@ -8,6 +8,7 @@ import { ContactsModel } from 'src/app/models/contacts.model';
 import { ContactsStoreActions, ContactsStoreSelectors, RootStoreState } from 'src/app/_root-store';
 import { DialogComponent } from '../dialog-component/dialog-component.component';
 import { PaginationModel } from '../models/pagination.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-contacts',
@@ -18,6 +19,17 @@ import { PaginationModel } from '../models/pagination.model';
 export class ContactsComponent implements OnInit {
     public allContactsSelector$: Observable<ContactsModel[]> = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
     public contactsCountSelector$: Observable<any> = this.store.select(ContactsStoreSelectors.getContactsCountSelector);
+    public columnsChoice = new FormControl(['id', 'name', 'phone']);
+    public columnsList: string[] = ['id', 'name', 'phone', 'type', 'zipcodeText'];
+    public displayedColumns = ['id', 'name', 'phone'];
+    public appliedFilter = '';
+    public paginationSetting: PaginationModel = {
+        page: 1,
+        pageSize: 10,
+        sortProperty: 'name',
+        sortDirection: 'asc'
+    };
+
     /**
      * @param  Store<RootStoreState.State> private store Rootstore
      * @param  MatDialog private dialog MatDialog service
@@ -25,16 +37,14 @@ export class ContactsComponent implements OnInit {
     constructor(
         private store: Store<RootStoreState.State>,
         private dialog: MatDialog) { }
-    public displayedColumns = ['id', 'name', 'description'];
 
-    public appliedFilter = '';
-
-    public paginationSetting: PaginationModel = {
-        page: 1,
-        pageSize: 10,
-        sortProperty: 'name',
-        sortDirection: 'asc'
-    };
+    /**
+     * @param  event select option event
+     * @returns void
+     */
+    public onOptionsSelected(event): void {
+        this.displayedColumns = event.value;
+    }
     /**
      * @param  number currentPage which page need to open
      * @returns void

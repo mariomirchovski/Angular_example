@@ -25,7 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         MatSelectModule,
         MatInputModule,
         MatFormFieldModule,
-        MatButtonModule
+        MatButtonModule,
     ]
 })
 export class ProductsModule { }
