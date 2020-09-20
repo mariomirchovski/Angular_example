@@ -46,7 +46,7 @@ export class DialogComponent implements OnInit {
         private store: Store<RootStoreState.State>) {
         if (data) {
             this.message = data.message || this.message;
-            this.modelType = data.modelType || this.modelType;
+            this.modelType = data.modelType;
             if (data.buttonText) {
                 this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
                 this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
