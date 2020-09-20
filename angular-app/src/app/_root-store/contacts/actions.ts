@@ -6,9 +6,10 @@ export enum ContactsType {
     LOAD_CONTACTS = '[CONTACTS] Load contacts',
     LOAD_CONTACTS_SUCCESS = '[CONTACTS] Load contacts Success',
     LOAD_CONTACTS_FAIL = '[CONTACTS] contacts Fail',
-    ADD_CONTACT = '[CONTACTS] add contacts',
-    ADD_CONTACT_SUCCESS = '[CONTACTS] add contacts success',
-    RESET_STORE = '[CONTACTS] Reset Store',
+    ADD_CONTACT = '[CONTACT] add contact',
+    ADD_CONTACT_SUCCESS = '[CONTACT] add contact success',
+    ADD_CONTACT_FAIL = '[CONTACT] add contact Fail',
+    RESET_STORE = '[CONTACT] Reset Store',
 }
 
 export class LoadContacts implements Action {

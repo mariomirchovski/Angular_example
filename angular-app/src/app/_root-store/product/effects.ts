@@ -32,7 +32,7 @@ export class ProductEffects {
 
     @Effect()
     public addProduct$: Observable<ProductActions.AddProductSuccess | ProductActions.LoadProductFail> = this.actions$.pipe(
-        ofType(ProductActions.ProductType.LOAD_PRODUCT),
+        ofType(ProductActions.ProductType.ADD_PRODUCT),
         switchMap((action: any) => {
             return this.productService.addProduct(action.payload)
                 .pipe(

@@ -8,6 +8,7 @@ export enum ProductType {
     LOAD_PRODUCT_FAIL = '[PRODUCT] PRODUCT Fail',
     ADD_PRODUCT = '[PRODUCT] add product',
     ADD_PRODUCT_SUCCESS = '[PRODUCT] add product success',
+    ADD_PRODUCT_FAIL = '[PRODUCT] add product Fail',
     RESET_STORE = '[PRODUCT] Reset Store',
 }
 
@@ -37,6 +38,12 @@ export class AddProduct implements Action {
 
 export class AddProductSuccess implements Action {
     readonly type = ProductType.ADD_PRODUCT_SUCCESS;
+
+    constructor(public payload: any) { }
+}
+
+export class AddProductFail implements Action {
+    readonly type = ProductType.ADD_PRODUCT_FAIL;
 
     constructor(public payload: any) { }
 }
