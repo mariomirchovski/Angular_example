@@ -14,12 +14,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { HeaderComponent } from './app-header/app-header.component';
+import { IndexComponent } from './app-index/app-index.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
         AppComponent,
+        HeaderComponent, 
+        IndexComponent,
         DialogComponent
     ],
     imports: [
@@ -39,7 +43,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [],
-    entryComponents: [DialogComponent],
+    entryComponents: [DialogComponent, HeaderComponent, IndexComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

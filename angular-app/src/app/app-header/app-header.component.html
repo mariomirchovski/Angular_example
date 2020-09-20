@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">  
+    <div class="header">
+        <h1 routerLink="/">FE tech challenger</h1>  
+        <div class="header-inner">
+            <button routerLinkActive="mat-warn" mat-button routerLink="/products">Products</button>  
+            <button routerLinkActive="mat-warn" mat-button routerLink="/contacts">Contacts</button>
+        </div>
+    </div>
+    <button mat-button (click)="loadData()">
+        <span class="material-icons">cached</span>
+    </button>
+</mat-toolbar>

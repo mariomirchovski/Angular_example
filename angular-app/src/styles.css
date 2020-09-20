@@ -45,6 +45,10 @@ blockquote:before, blockquote:after {
   padding: 20px 0;
 }
 
-.columns-selector {
+.search-wrapper {
+  padding: 10px;
+}
+
+.top-inputs {
   width: 100%;
 }

@@ -1,0 +1,9 @@
+.main ul {
+  list-style: circle;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.main ul li + li {
+  margin-top: 10px;
+}

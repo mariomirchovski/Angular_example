@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    h1 {
+        outline: 0;
+        cursor: pointer;
+    }
+}
