@@ -10,6 +10,11 @@ import { RequestHelper, ResponseData } from './config';
 export class ContactsService {
     constructor(private http: HttpClient) { }
 
+    /**
+     * @description Get products from the api to list,
+     * @param payload,
+     * @return observable
+     */
     getContacts(payload): Observable<ResponseData> {
         let sort = '';
         if (payload.sortProperty) {
@@ -19,6 +24,11 @@ export class ContactsService {
         return RequestHelper.get(this.http, `/contacts?page=${payload.page}&pageSize=${payload.pageSize}${sort}`);
     }
 
+    /**
+     * @description Get contacts from the api to list,
+     * @param payload,
+     * @return observable
+     */
     addContact(payload): Observable<any> {
         return RequestHelper.post(this.http, `/contacts`, { contact: payload });
     }

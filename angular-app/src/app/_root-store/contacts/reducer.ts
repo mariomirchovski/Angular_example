@@ -42,7 +42,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
                 ...state,
                 loading: false,
                 items: allEntities,
-                error: action.payload.error
+                error: action.payload.error ? action.payload.error : 'Ops! Something went wrong!'
             };
         }
 
