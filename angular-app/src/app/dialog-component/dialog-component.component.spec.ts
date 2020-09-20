@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { RootStoreModule } from '../_root-store';
 
 import { DialogComponent } from './dialog-component.component';
 
@@ -18,7 +19,8 @@ describe('DialogComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         MatSelectModule,
-        MatDialogModule
+        MatDialogModule,
+        RootStoreModule
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
