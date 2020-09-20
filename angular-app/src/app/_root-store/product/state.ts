@@ -6,7 +6,7 @@ export interface ProductState {
 }
 
 export const InitialState: ProductState = {
-    items: [],
+    items: null,
     meta: {},
     loading: false
 };

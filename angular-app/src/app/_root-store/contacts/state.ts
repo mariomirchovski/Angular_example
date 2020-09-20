@@ -7,7 +7,7 @@ export interface ContactsState {
 }
 
 export const InitialState: ContactsState = {
-    items: [],
+    items: null,
     meta: {},
     loading: false
 };
