@@ -6,10 +6,8 @@ import { PaginationModel } from 'src/app/models/pagination.model';
 export enum ProductType {
     LOAD_PRODUCT = '[PRODUCT] Load PRODUCT',
     LOAD_PRODUCT_SUCCESS = '[PRODUCT] Load PRODUCT Success',
-    LOAD_PRODUCT_FAIL = '[PRODUCT] PRODUCT Fail',
     ADD_PRODUCT = '[PRODUCT] add product',
     ADD_PRODUCT_SUCCESS = '[PRODUCT] add product success',
-    ADD_PRODUCT_FAIL = '[PRODUCT] add product Fail',
     RESET_STORE = '[PRODUCT] Reset Store',
 }
 
@@ -25,12 +23,6 @@ export class LoadProductSuccess implements Action {
     constructor(public payload: ResponseData) { }
 }
 
-export class LoadProductFail implements Action {
-    readonly type = ProductType.LOAD_PRODUCT_FAIL;
-
-    constructor(public payload: any) { }
-}
-
 export class AddProduct implements Action {
     readonly type = ProductType.ADD_PRODUCT;
 
@@ -43,12 +35,6 @@ export class AddProductSuccess implements Action {
     constructor(public payload: any) { }
 }
 
-export class AddProductFail implements Action {
-    readonly type = ProductType.ADD_PRODUCT_FAIL;
-
-    constructor(public payload: any) { }
-}
-
 export class ResetStore implements Action {
     readonly type = ProductType.RESET_STORE;
 
@@ -57,7 +43,6 @@ export class ResetStore implements Action {
 
 export type ProductActions = LoadProduct
     | LoadProductSuccess
-    | LoadProductFail
     | AddProduct
     | AddProductSuccess
     | ResetStore

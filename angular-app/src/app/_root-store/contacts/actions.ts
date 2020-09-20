@@ -6,10 +6,8 @@ import { PaginationModel } from 'src/app/models/pagination.model';
 export enum ContactsType {
     LOAD_CONTACTS = '[CONTACTS] Load contacts',
     LOAD_CONTACTS_SUCCESS = '[CONTACTS] Load contacts Success',
-    LOAD_CONTACTS_FAIL = '[CONTACTS] contacts Fail',
     ADD_CONTACT = '[CONTACT] add contact',
     ADD_CONTACT_SUCCESS = '[CONTACT] add contact success',
-    ADD_CONTACT_FAIL = '[CONTACT] add contact Fail',
     RESET_STORE = '[CONTACT] Reset Store',
 }
 
@@ -23,12 +21,6 @@ export class LoadContactsSuccess implements Action {
     readonly type = ContactsType.LOAD_CONTACTS_SUCCESS;
 
     constructor(public payload: ResponseData) { }
-}
-
-export class LoadContactsFail implements Action {
-    readonly type = ContactsType.LOAD_CONTACTS_FAIL;
-
-    constructor(public payload: any) { }
 }
 
 export class AddContact implements Action {
@@ -51,7 +43,6 @@ export class ResetStore implements Action {
 
 export type ContactsActions = LoadContacts
     | LoadContactsSuccess
-    | LoadContactsFail
     | AddContact
     | AddContactSuccess
     | ResetStore

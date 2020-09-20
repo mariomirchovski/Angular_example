@@ -19,13 +19,6 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
             };
         }
 
-        case ProductActions.ProductType.LOAD_PRODUCT_FAIL: {
-            return {
-                ...state,
-                loading: false
-            };
-        }
-
         case ProductActions.ProductType.ADD_PRODUCT: {
             return {
                 ...state,

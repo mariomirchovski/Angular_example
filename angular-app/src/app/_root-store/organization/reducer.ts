@@ -17,12 +17,6 @@ export function OrganizationReducer(state: OrganizationState = InitialState,
             };
         }
 
-        case OrganizationActions.OrganizationType.LOAD_ORGANIZATION_FAIL: {
-            return {
-                ...state,
-            };
-        }
-
         default:
             return state;
     }

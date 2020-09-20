@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
@@ -17,7 +17,7 @@ import { PaginationModel } from '../models/pagination.model';
     styleUrls: ['./contacts.component.scss']
 })
 
-export class ContactsComponent implements OnInit {
+export class ContactsComponent implements OnInit, OnDestroy {
     public allContactsSelector$: Observable<ContactsModel[]> = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
     public contactsCountSelector$: Observable<any> = this.store.select(ContactsStoreSelectors.getContactsCountSelector);
     public columnsChoice = new FormControl(['id', 'name', 'phone']);
@@ -52,6 +52,7 @@ export class ContactsComponent implements OnInit {
         this.displayedColumns = event.value;
         localStorage.setItem('contactsColumns', JSON.stringify(this.displayedColumns));
     }
+
     /**
      * @param  number currentPage which page need to open
      * @returns void
@@ -64,8 +65,9 @@ export class ContactsComponent implements OnInit {
 
         this.store.dispatch(new ContactsStoreActions.LoadContacts(this.paginationSetting));
     }
+
     /**
-     * @param  string filterValue value of the search field
+     * @param string filterValue value of the search field
      */
     public filterTable(filterValue: string): void {
         this.appliedFilter = filterValue;
@@ -77,8 +79,10 @@ export class ContactsComponent implements OnInit {
             this.allContactsSelector$ = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
         }
     }
+
     /**
-     * @param  MatSort sort sort object from mat-sort
+     * @description sort sort object from mat-sort,
+     * @param  MatSort,
      * @returns void
      */
     public sortContacts(sort: MatSort): void {
@@ -90,11 +94,13 @@ export class ContactsComponent implements OnInit {
 
         this.loadContacts(this.paginationSetting.page);
     }
+
     /**
+     * @description Function that fetch open dialog,
      * @returns void
      */
     openDialog(): void {
-        const dialogRef = this.dialog.open(DialogComponent, {
+        this.dialog.open(DialogComponent, {
             data: {
                 message: 'Add new contact',
                 modelType: DialogModeEnum.contact,
@@ -105,10 +111,12 @@ export class ContactsComponent implements OnInit {
             }
         });
     }
-    /**
-     * @returns void
-     */
+
     ngOnInit(): void {
         this.loadContacts(this.paginationSetting.page);
+    }
+
+    ngOnDestroy(): void {
+        this.store.dispatch(new ContactsStoreActions.ResetStore());
     }
 }

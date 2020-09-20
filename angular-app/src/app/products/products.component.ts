@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
@@ -18,7 +18,7 @@ import { DialogModeEnum } from '../enums/dialog.enum';
     styleUrls: ['./products.component.scss']
 })
 
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
     public allProductsSelector$: Observable<ProductModel[]> = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
     public productsCountSelector$: Observable<any> = this.store.select(ProductStoreSelectors.getProductsCountSelector);
     public columnsChoice = new FormControl(['id', 'name', 'description']);
@@ -56,6 +56,7 @@ export class ProductsComponent implements OnInit {
         this.displayedColumns = event.value;
         localStorage.setItem('productsColumns', JSON.stringify(this.displayedColumns));
     }
+
     /**
      * @param  number currentPage which page need to open
      * @returns void
@@ -68,6 +69,7 @@ export class ProductsComponent implements OnInit {
 
         this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
     }
+
     /**
      * @param  string filterValue value of the search field
      */
@@ -81,6 +83,7 @@ export class ProductsComponent implements OnInit {
             this.allProductsSelector$ = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
         }
     }
+
     /**
      * @param  MatSort sort sort object from mat-sort
      * @returns void
@@ -94,11 +97,12 @@ export class ProductsComponent implements OnInit {
 
         this.loadProducts(this.paginationSetting.page);
     }
+
     /**
      * @returns void
      */
     openDialog(): void {
-        const dialogRef = this.dialog.open(DialogComponent, {
+        this.dialog.open(DialogComponent, {
             data: {
                 message: 'Add new product',
                 modelType: DialogModeEnum.product,
@@ -109,10 +113,12 @@ export class ProductsComponent implements OnInit {
             }
         });
     }
-    /**
-     * @returns void
-     */
+
     ngOnInit(): void {
         this.loadProducts(this.paginationSetting.page);
+    }
+
+    ngOnDestroy(): void {
+        this.store.dispatch(new ProductStoreActions.ResetStore());
     }
 }

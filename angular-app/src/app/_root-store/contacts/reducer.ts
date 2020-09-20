@@ -19,13 +19,6 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
             };
         }
 
-        case ContactsActions.ContactsType.LOAD_CONTACTS_FAIL: {
-            return {
-                ...state,
-                loading: false
-            };
-        }
-
         case ContactsActions.ContactsType.ADD_CONTACT: {
             return {
                 ...state,
