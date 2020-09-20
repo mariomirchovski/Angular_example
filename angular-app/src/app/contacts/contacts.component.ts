@@ -18,7 +18,10 @@ import { PaginationModel } from '../models/pagination.model';
 export class ContactsComponent implements OnInit {
     public allContactsSelector$: Observable<ContactsModel[]> = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
     public contactsCountSelector$: Observable<any> = this.store.select(ContactsStoreSelectors.getContactsCountSelector);
-
+    /**
+     * @param  {Store<RootStoreState.State>} privatestore Rootstore
+     * @param  {MatDialog} privatedialog MatDialog service
+     */
     constructor(
         private store: Store<RootStoreState.State>,
         private dialog: MatDialog) { }
@@ -32,8 +35,11 @@ export class ContactsComponent implements OnInit {
         sortProperty: 'name',
         sortDirection: 'asc'
     };
-
-    public loadContacts(currentPage): void {
+    /**
+     * @param  {number} currentPage which page need to open
+     * @returns void
+     */
+    public loadContacts(currentPage: number): void {
         this.paginationSetting = {
             ...this.paginationSetting,
             page: currentPage
@@ -41,18 +47,23 @@ export class ContactsComponent implements OnInit {
 
         this.store.dispatch(new ContactsStoreActions.LoadContacts(this.paginationSetting));
     }
-
-    public filterTable(filterValue: string) {
-        this.appliedFilter = filterValue
+    /**
+     * @param  {string} filterValue value of the search field
+     */
+    public filterTable(filterValue: string):void {
+        this.appliedFilter = filterValue;
         if (filterValue.length > 0) {
             this.allContactsSelector$ = this.allContactsSelector$.pipe(map(
                 (products) => products.filter(product => product.name.toLowerCase().indexOf(filterValue.trim().toLowerCase()) > -1))
-            )
+            );
         } else {
-            this.allContactsSelector$ = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector)
+            this.allContactsSelector$ = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
         }
     }
-
+    /**
+     * @param  {MatSort} sort sort object from mat-sort
+     * @returns void
+     */
     public sortContacts(sort: MatSort): void {
         this.paginationSetting = {
             ...this.paginationSetting,
@@ -62,7 +73,9 @@ export class ContactsComponent implements OnInit {
 
         this.loadContacts(this.paginationSetting.page);
     }
-
+    /**
+     * @returns void
+     */
     openDialog(): void {
         const dialogRef = this.dialog.open(DialogComponent, {
             data: {
@@ -79,7 +92,9 @@ export class ContactsComponent implements OnInit {
             console.log('confirmed: ', confirmed);
         });
     }
-
+    /**
+     * @returns void
+     */
     ngOnInit(): void {
         this.loadContacts(this.paginationSetting.page);
     }

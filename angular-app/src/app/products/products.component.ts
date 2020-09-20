@@ -34,14 +34,25 @@ export class ProductsComponent implements OnInit {
     @ViewChild(MatTable)
     table;
 
+    /**
+     * @param  {Store<RootStoreState.State>} privatestore Rootstore
+     * @param  {MatDialog} privatedialog MatDialog service
+     */
     constructor(
         private store: Store<RootStoreState.State>,
         private dialog: MatDialog) { }
 
+    /**
+     * @param  {} event select option event
+     * @returns void
+     */
     public onOptionsSelected(event): void {
         this.displayedColumns = event.value;
     }
-
+    /**
+     * @param  {number} currentPage which page need to open
+     * @returns void
+     */
     public loadProducts(currentPage: number): void {
         this.paginationSetting = {
             ...this.paginationSetting,
@@ -50,18 +61,23 @@ export class ProductsComponent implements OnInit {
 
         this.store.dispatch(new ProductStoreActions.LoadProduct(this.paginationSetting));
     }
-
-    public filterTable(filterValue: string) {
-        this.appliedFilter = filterValue
+    /**
+     * @param  {string} filterValue value of the search field
+     */
+    public filterTable(filterValue: string): void {
+        this.appliedFilter = filterValue;
         if (filterValue.length > 0) {
             this.allProductsSelector$ = this.allProductsSelector$.pipe(map(
                 (products) => products.filter(product => product.name.toLowerCase().indexOf(filterValue.trim().toLowerCase()) > -1))
-            )
+            );
         } else {
-            this.allProductsSelector$ = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector)
+            this.allProductsSelector$ = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
         }
     }
-
+    /**
+     * @param  {MatSort} sort sort object from mat-sort
+     * @returns void
+     */
     public sortProducts(sort: MatSort): void {
         this.paginationSetting = {
             ...this.paginationSetting,
@@ -71,7 +87,9 @@ export class ProductsComponent implements OnInit {
 
         this.loadProducts(this.paginationSetting.page);
     }
-
+    /**
+     * @returns void
+     */
     openDialog(): void {
         const dialogRef = this.dialog.open(DialogComponent, {
             data: {
@@ -88,7 +106,9 @@ export class ProductsComponent implements OnInit {
             console.log('confirmed: ', confirmed);
         });
     }
-
+    /**
+     * @returns void
+     */
     ngOnInit(): void {
         this.loadProducts(1);
     }

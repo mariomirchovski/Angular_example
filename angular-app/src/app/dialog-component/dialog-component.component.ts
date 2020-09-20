@@ -23,6 +23,11 @@ export class DialogComponent {
     countryId: new FormControl('', [Validators.required])
   }
   
+  /**
+   * @param  {} @Inject(MAT_DIALOG_DATA
+   * @param  {any} privatedata
+   * @param  {MatDialogRef<DialogComponent>} privatedialogRef
+   */
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<DialogComponent>) {
@@ -35,13 +40,18 @@ export class DialogComponent {
         }
       }
   }
-
+  /**
+   * @param  {} form
+   * @param  {} field
+   */
   getErrorMessage(form, field) {
     if (this[form][field].hasError('required')) {
       return 'You must enter a value';
     }
   }
-
+  /**
+   * @returns void
+   */
   onConfirmClick(): void {
     this.dialogRef.close(true);
   }
