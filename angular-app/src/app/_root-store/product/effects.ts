@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, mergeMap } from 'rxjs/operators';
 import { ResponseData } from 'src/app/core/services/config';
 import * as ErrorActions from '../errors/actions';
 import { ErrorState } from '../errors/state';
@@ -39,23 +39,21 @@ export class ProductEffects {
     );
 
     @Effect()
-    public addProduct$: Observable<Action[] | ErrorActions.ErrorAction> = this.actions$.pipe(
+    public addProduct$: Observable<ProductActions.AddProductSuccess | ErrorActions.ErrorAction> = this.actions$.pipe(
         ofType(ProductActions.ProductType.ADD_PRODUCT),
         switchMap((action: any) => {
             return this.productService.addProduct(action.payload)
                 .pipe(
-                    map((AllData: ResponseData) => {
+                    mergeMap((AllData: ResponseData) => {
                         const error: ErrorState = {
                             type: 0,
                             message: 'Product successfully added!'
                         };
 
-                        const arrayOfActions: Action[] = [
+                        return [
                             new ErrorActions.ErrorAction(error),
                             new ProductActions.AddProductSuccess(AllData)
                         ];
-
-                        return arrayOfActions;
                     }),
                     catchError(err => {
                         const error: ErrorState = {

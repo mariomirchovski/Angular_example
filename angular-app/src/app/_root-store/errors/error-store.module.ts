@@ -6,7 +6,7 @@ import { ErrorReducer } from './reducer';
 @NgModule({
     imports: [
         CommonModule,
-        StoreModule.forFeature('organization', ErrorReducer)
+        StoreModule.forFeature('error', ErrorReducer)
     ]
 })
 export class ErrorStoreModule { }

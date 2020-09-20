@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, mergeMap } from 'rxjs/operators';
 import { ResponseData } from 'src/app/core/services/config';
 import * as ErrorActions from '../errors/actions';
 import { ErrorState } from '../errors/state';
@@ -38,23 +38,21 @@ export class ContactsEffects {
     );
 
     @Effect()
-    public addContact$: Observable<Action[] | ErrorActions.ErrorAction> = this.actions$.pipe(
+    public addContact$: Observable<ContactsActions.AddContactSuccess | ErrorActions.ErrorAction> = this.actions$.pipe(
         ofType(ContactsActions.ContactsType.ADD_CONTACT),
         switchMap((action: any) => {
             return this.contactsService.addContact(action.payload)
                 .pipe(
-                    map((AllData: ResponseData) => {
+                    mergeMap((AllData: ResponseData) => {
                         const error: ErrorState = {
                             type: 0,
-                            message: 'Product successfully added!'
+                            message: 'Contact successfully added!'
                         };
 
-                        const arrayOfActions: Action[] = [
+                        return [
                             new ErrorActions.ErrorAction(error),
                             new ContactsActions.AddContactSuccess(AllData)
                         ];
-
-                        return arrayOfActions;
                     }),
                     catchError(err => {
                         const error: ErrorState = {
