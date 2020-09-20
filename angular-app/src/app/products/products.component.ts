@@ -41,7 +41,12 @@ export class ProductsComponent implements OnInit {
      */
     constructor(
         private store: Store<RootStoreState.State>,
-        private dialog: MatDialog) { }
+        private dialog: MatDialog) {
+        if (localStorage.getItem('productsColumns')) {
+            this.columnsChoice = new FormControl(JSON.parse(localStorage.getItem('productsColumns')));
+            this.displayedColumns = JSON.parse(localStorage.getItem('productsColumns'));
+        }
+    }
 
     /**
      * @param  event select option event
@@ -49,6 +54,7 @@ export class ProductsComponent implements OnInit {
      */
     public onOptionsSelected(event): void {
         this.displayedColumns = event.value;
+        localStorage.setItem('productsColumns', JSON.stringify(this.displayedColumns));
     }
     /**
      * @param  number currentPage which page need to open

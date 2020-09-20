@@ -37,7 +37,12 @@ export class ContactsComponent implements OnInit {
      */
     constructor(
         private store: Store<RootStoreState.State>,
-        private dialog: MatDialog) { }
+        private dialog: MatDialog) {
+        if (localStorage.getItem('contactsColumns')) {
+            this.columnsChoice = new FormControl(JSON.parse(localStorage.getItem('contactsColumns')));
+            this.displayedColumns = JSON.parse(localStorage.getItem('contactsColumns'));
+        }
+        }
 
     /**
      * @param  event select option event
@@ -45,6 +50,7 @@ export class ContactsComponent implements OnInit {
      */
     public onOptionsSelected(event): void {
         this.displayedColumns = event.value;
+        localStorage.setItem('contactsColumns', JSON.stringify(this.displayedColumns));
     }
     /**
      * @param  number currentPage which page need to open
