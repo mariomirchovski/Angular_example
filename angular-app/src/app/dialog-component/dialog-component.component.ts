@@ -7,7 +7,6 @@ import { ContactsStoreActions, OrganizationStoreSelectors, ProductStoreActions, 
 import { DialogModeEnum } from '../enums/dialog.enum';
 import { AddContactModel } from '../models/addContact.model';
 import { AddProductModel } from '../models/addProduct.model';
-import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
     selector: 'dialog-component',
@@ -44,7 +43,6 @@ export class DialogComponent implements OnInit {
     constructor(
         @Inject(MAT_DIALOG_DATA) private data: any,
         private dialogRef: MatDialogRef<DialogComponent>,
-        private snackbar: MatSnackBar,
         private store: Store<RootStoreState.State>) {
         if (data) {
             this.message = data.message || this.message;
@@ -98,11 +96,6 @@ export class DialogComponent implements OnInit {
 
             this.store.dispatch(new ProductStoreActions.AddProduct(productData));
         }
-
-        this.snackbar.open(`${this.modelType === 0 ? 'Contact' : 'Product'} successfully added!`, '', {
-            duration: 2000,
-            panelClass: ['mat-toolbar', 'mat-primary']
-        })
         
         this.dialogRef.close(true);
     }
