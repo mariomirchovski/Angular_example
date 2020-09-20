@@ -162,3 +162,10 @@ blockquote:before, blockquote:after {
 .header-actions .top-inputs {
   width: 50%;
 }
+
+.spinner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 668px;
+}

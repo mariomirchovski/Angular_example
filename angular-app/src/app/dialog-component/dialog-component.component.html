@@ -72,7 +72,7 @@
     >
         <div class="form-control-wrapper">
             <mat-form-field appearance="fill">
-                <mat-label>Enter product name</mat-label>
+                <mat-label>Enter contact name</mat-label>
                 <input
                     matInput
                     placeholder="Name"
@@ -85,7 +85,36 @@
         </div>
         <div class="form-control-wrapper">
             <mat-form-field appearance="fill">
-                <mat-label>Enter product country</mat-label>
+                <mat-label>Enter contact phone</mat-label>
+                <input
+                    matInput
+                    placeholder="Phone number"
+                    [formControl]="formContact.phone"
+                    name="phone"
+                    type="number"
+                    required
+                >
+                <mat-error *ngIf="formContact.phone.invalid">{{getErrorMessage('formContact', 'phone')}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter contact zip</mat-label>
+                <input
+                    matInput
+                    placeholder="ZIP Code"
+                    [formControl]="formContact.zipcodeText"
+                    name="zipcodeText"
+                    required
+                >
+                <mat-error *ngIf="formContact.zipcodeText.invalid">{{getErrorMessage('formContact', 'zipcodeText')}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-control-wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter contact country</mat-label>
                 <mat-select
                     placeholder="Country"
                     [formControl]="formContact.countryId"
