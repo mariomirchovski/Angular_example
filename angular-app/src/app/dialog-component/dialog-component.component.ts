@@ -28,6 +28,8 @@ export class DialogComponent implements OnInit {
 
     public formContact = {
         name: new FormControl('', [Validators.required]),
+        phone: new FormControl('', [Validators.required]),
+        zipcodeText: new FormControl('', [Validators.required]),
         countryId: new FormControl('', [Validators.required])
     };
 
@@ -77,6 +79,8 @@ export class DialogComponent implements OnInit {
             const contactData: AddContactModel = {
                 organizationId: this.organizationId,
                 name: this.formContact.name.value,
+                phone: this.formContact.phone.value,
+                zipcodeText: this.formContact.zipcodeText.value,
                 countryId: this.formContact.countryId.value
             };
 
