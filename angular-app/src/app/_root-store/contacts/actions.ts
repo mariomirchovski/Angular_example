@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ResponseData } from 'src/app/core/services/config';
+import { AddContactModel } from 'src/app/models/addContact.model';
 import { PaginationModel } from 'src/app/models/pagination.model';
 
 export enum ContactsType {
@@ -33,7 +34,7 @@ export class LoadContactsFail implements Action {
 export class AddContact implements Action {
     readonly type = ContactsType.ADD_CONTACT;
 
-    constructor(public payload: any) { }
+    constructor(public payload: AddContactModel) { }
 }
 
 export class AddContactSuccess implements Action {

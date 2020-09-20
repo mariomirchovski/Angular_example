@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ResponseData } from 'src/app/core/services/config';
+import { AddProductModel } from 'src/app/models/addProduct.model';
 import { PaginationModel } from 'src/app/models/pagination.model';
 
 export enum ProductType {
@@ -33,7 +34,7 @@ export class LoadProductFail implements Action {
 export class AddProduct implements Action {
     readonly type = ProductType.ADD_PRODUCT;
 
-    constructor(public payload: any) { }
+    constructor(public payload: AddProductModel) { }
 }
 
 export class AddProductSuccess implements Action {

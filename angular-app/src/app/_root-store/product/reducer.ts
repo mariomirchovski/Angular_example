@@ -31,8 +31,7 @@ export function ProductReducer(state: ProductState = InitialState, action: Produ
         case ProductActions.ProductType.ADD_PRODUCT: {
             return {
                 ...state,
-                loading: false,
-                error: action.payload.error
+                loading: false
             };
         }
 

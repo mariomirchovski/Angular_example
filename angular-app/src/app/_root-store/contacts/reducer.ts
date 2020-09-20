@@ -31,8 +31,7 @@ export function ContactsReducer(state: ContactsState = InitialState, action: Con
         case ContactsActions.ContactsType.ADD_CONTACT: {
             return {
                 ...state,
-                loading: false,
-                error: action.payload.error
+                loading: false
             };
         }
 
