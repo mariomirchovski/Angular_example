@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -36,6 +37,7 @@ describe('AppComponent', () => {
         MatSelectModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
       ],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [
         AppComponent
       ],
