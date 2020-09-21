@@ -105,22 +105,14 @@ export class DialogComponent implements OnInit {
     }
 
     checkIfDisabled(): Boolean {
+        let form = this.modelType === 0 ? this.formContact : this.formProduct
         let disabled = false;
         
-        if (this.modelType === 0) {
-            Object.keys(this.formContact).map(contact => {
-                console.log(this.formContact[contact].valid);
-                if (this.formContact[contact].valid === false) {
-                    disabled = true
-                }
-            })
-        } else {
-            Object.keys(this.formProduct).map(product => {
-                if (this.formProduct[product].valid === false) {
-                    disabled = true
-                }
-            })
-        }
+        Object.keys(form).map(item => {
+            if (form[item].valid === false) {
+                disabled = true
+            }
+        })
 
         return disabled
     }
