@@ -71,12 +71,12 @@ export class ContactsComponent implements OnInit, OnDestroy {
      */
     public filterTable(filterValue: string): void {
         this.appliedFilter = filterValue;
+        this.allContactsSelector$ = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
+
         if (filterValue.length > 0) {
             this.allContactsSelector$ = this.allContactsSelector$.pipe(map(
                 (products) => products.filter(product => product.name.toLowerCase().indexOf(filterValue.trim().toLowerCase()) > -1))
             );
-        } else {
-            this.allContactsSelector$ = this.store.select(ContactsStoreSelectors.getAllContactsEntitiesSelector);
         }
     }
 

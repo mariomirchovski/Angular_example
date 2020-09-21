@@ -75,12 +75,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
      */
     public filterTable(filterValue: string): void {
         this.appliedFilter = filterValue;
+        this.allProductsSelector$ = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
+
         if (filterValue.length > 0) {
             this.allProductsSelector$ = this.allProductsSelector$.pipe(map(
                 (products) => products.filter(product => product.name.toLowerCase().indexOf(filterValue.trim().toLowerCase()) > -1))
             );
-        } else {
-            this.allProductsSelector$ = this.store.select(ProductStoreSelectors.getAllProductsEntitiesSelector);
         }
     }
 
