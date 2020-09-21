@@ -30,7 +30,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [length]="appliedFilter.length > 0 ? (products | async).length : productsCountSelector$ | async"
+        <mat-paginator [length]="(appliedFilter.length > 0 && products) ? products.length : (productsCountSelector$ | async)"
             [pageSize]="paginationSetting.pageSize" (page)="loadProducts($event.pageIndex + 1)" showFirstLastButtons>
         </mat-paginator>
     </div>
