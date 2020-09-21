@@ -145,5 +145,6 @@
         color="primary"
         (click)="onConfirmClick()"
         tabindex="1"
+        [disabled]="checkIfDisabled()"
     >{{confirmButtonText}}</button>
 </div>
