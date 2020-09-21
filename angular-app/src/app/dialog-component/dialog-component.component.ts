@@ -100,20 +100,20 @@ export class DialogComponent implements OnInit {
 
             this.store.dispatch(new ProductStoreActions.AddProduct(productData));
         }
-        
+
         this.dialogRef.close(true);
     }
 
-    checkIfDisabled(): Boolean {
-        let form = this.modelType === 0 ? this.formContact : this.formProduct
+    checkIfDisabled(): boolean {
+        const form = this.modelType === 0 ? this.formContact : this.formProduct;
         let disabled = false;
-        
+
         Object.keys(form).map(item => {
             if (form[item].valid === false) {
-                disabled = true
+                disabled = true;
             }
-        })
+        });
 
-        return disabled
+        return disabled;
     }
 }
