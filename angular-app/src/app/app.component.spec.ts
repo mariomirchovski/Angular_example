@@ -15,13 +15,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
+import { AppIndexComponent } from './app-index/app-index.component';
+import { HeaderComponent } from './app-header/app-header.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        CommonModule,
         BrowserModule,
         RootStoreModule,
         AppRoutingModule,
@@ -30,16 +34,19 @@ describe('AppComponent', () => {
         MatButtonModule,
         MatDialogModule,
         MatToolbarModule,
+        MatSnackBarModule,
         MatFormFieldModule,
         MatInputModule,
-        FormsModule, 
+        FormsModule,
         ReactiveFormsModule,
         MatSelectModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        AppIndexComponent
       ],
     }).compileComponents();
   });
